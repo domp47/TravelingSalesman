@@ -6,8 +6,10 @@ import java.io.*;
 
 public class LoadFromFile {
     /**
-     * @return
-     * @throws IOException
+     * Loads Vertices from a file chooser
+     *
+     * @return float[][] vertices
+     * @throws IOException e
      */
     public static float[][] LoadVertices() throws IOException{
         File file = chooseFile("File to Load");
@@ -19,9 +21,11 @@ public class LoadFromFile {
     }
 
     /**
-     * @param path
-     * @return
-     * @throws IOException
+     * Loads Vertices from full file path
+     *
+     * @param path of file
+     * @return float[][] vertices
+     * @throws IOException e
      */
     public static float[][] LoadVertices(String path) throws IOException {
 
@@ -34,9 +38,11 @@ public class LoadFromFile {
     }
 
     /**
-     * @param file
-     * @return
-     * @throws IOException
+     * Loads Vertices from Java File
+     *
+     * @param file of data
+     * @return float[][] vertices
+     * @throws IOException e
      */
     public static float[][] LoadVertices(File file) throws IOException {
         float[][] vertices;
@@ -81,18 +87,23 @@ public class LoadFromFile {
             vertices[i] = vertex;
         }
 
-        return null;
+        return vertices;
     }
 
     /**
-     * @param title
-     * @return
+     * JFileChooser for choosing file to load
+     *
+     * @param title Title of file chooser
+     * @return File file to load
      */
     private static File chooseFile(String title) {// method to open up a file dialog and return the
-        // file. returns null if no file is chosen
+                                                  // file. returns null if no file is chosen
+        File workingDirectory = new File(System.getProperty("user.dir"));
+
         File f = null;
         JFileChooser fc = new JFileChooser();// opens file dialog using swing
         fc.setDialogTitle(title);
+        fc.setCurrentDirectory(workingDirectory);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Files", "txt", "text");// filter to choose which files
         // to look for
         fc.setFileFilter(filter);
