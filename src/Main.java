@@ -1,5 +1,6 @@
 import DataHandler.CreateAdjacencyMatrix;
 import DataHandler.LoadFromFile;
+import Search.EASearch;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -37,6 +38,9 @@ public class Main {
 
         float[][] adjacencyMatrix = CreateAdjacencyMatrix.CreateAdjacencyMatrix(vertices);
 
-        System.out.println("Hello World");
+        EASearch search = new EASearch(adjacencyMatrix);
+        search.Search();
+
+        System.out.println("Shortest Distance is: "+search.getShortestDistance());
     }
 }
