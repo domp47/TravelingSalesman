@@ -45,7 +45,7 @@ public class EASearch {
        float distance = 0;
 
        for (int i = 0; i < path.length-1; i++) {
-           distance += adjacencyMatrix[i][i+1];
+           distance += adjacencyMatrix[path[i]][path[i+1]];
        }
 
        return distance;
