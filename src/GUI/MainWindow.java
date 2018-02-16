@@ -17,7 +17,7 @@ public class MainWindow extends JFrame implements ActionListener, WindowListener
     private JTextField best;
 
     private JLabel nThreadsLabel;
-    private JLabel nThreads;
+    private JTextField nThreads;
 
     private JLabel nSearchesLabel;
     private JTextField nSearches;
@@ -36,12 +36,12 @@ public class MainWindow extends JFrame implements ActionListener, WindowListener
         filePath = new JTextField();
         browseButton = new JButton("Browse");
 
+        bestLabel = new JLabel("Current Best");
+        best = new JTextField();
+        best.setEditable(false);
 
-        this.add(filePathLabel);
-        this.add(filePath);
-        this.add(browseButton);
-
-        setVisible(true);
+        nThreadsLabel = new JLabel("Number of Threads");
+        nThreads = new JTextField();
     }
     @Override
     public void actionPerformed(ActionEvent e) {
