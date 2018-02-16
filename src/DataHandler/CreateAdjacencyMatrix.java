@@ -20,4 +20,21 @@ public class CreateAdjacencyMatrix {
 
         return adjacencyMatrix;
     }
+
+    public static void PrintMatrix(float[][] adjacencyMatrix){
+        for (int y = 0; y < adjacencyMatrix.length; y++) {
+            for (int x = 0; x < adjacencyMatrix.length; x++) {
+                if(x!=0)
+                    System.out.print(" | ");
+                System.out.print(String.format("%05.2f", adjacencyMatrix[y][x]));
+            }
+            System.out.println();
+
+            for(float f: adjacencyMatrix[y]){
+                System.out.print("--------");
+            }
+
+            System.out.println();
+        }
+    }
 }
