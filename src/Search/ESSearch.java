@@ -19,11 +19,13 @@ public class ESSearch {
     public void Search(){
         for (int epochs = 0; epochs < N_EPOCHS; epochs++) {
             int[] ranPath = GenerateRandomPath(adjacencyMatrix.length);
+//            System.out.println("New Epoch: "+GetDistance(ranPath));
             for (int i = 0; i < N_ITERATIONS; i++) {
 
                 float distance = GetDistance(ranPath);
 
                 if(distance<shortestDistance){
+                    System.out.println("New Shortest Distance: "+distance);
                     shortestPath = ranPath.clone();
                     shortestDistance = distance;
                 }
@@ -73,7 +75,6 @@ public class ESSearch {
      * @param ar to shuffle
      */
     private void Shuffle(int[] ar) {
-        // If running on Java 6 or older, use `new Random()` on RHS here
         Random rnd = new Random();
         for (int i = ar.length - 1; i > 0; i--)
         {
