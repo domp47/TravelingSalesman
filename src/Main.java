@@ -1,12 +1,6 @@
-import DataHandler.CreateAdjacencyMatrix;
-import DataHandler.LoadFromFile;
-import GUI.MainWindow;
-import Search.ESSearch;
+import GUI.MainFrame;
 
-import java.io.IOException;
 import java.util.Scanner;
-
-import static java.lang.System.exit;
 
 public class Main {
     public static void main(String[] args){
@@ -14,7 +8,7 @@ public class Main {
 
         float[][] vertices = null;
 
-        MainWindow mainWindow = new MainWindow();
+        MainFrame mainFrame = new MainFrame();
 
 //        System.out.print("Enter 'e' to type file Path, or enter anything else to open file chooser: ");
 //        if(scanner.next().toLowerCase().equals("e")){
