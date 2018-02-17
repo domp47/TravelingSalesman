@@ -6,47 +6,19 @@ import java.io.*;
 
 public class LoadFromFile {
     /**
-     * Loads Vertices from a file chooser
+     * Loads Vertices from Java File
      *
-     * @return float[][] vertices
-     * @throws IOException e
-     */
-    public static float[][] LoadVertices() throws IOException{
-        File file = FileChooser.chooseFile("File to Load");
-
-        if(file==null||!file.exists())
-            throw new IOException();
-
-        return LoadVertices(file);
-    }
-
-    /**
-     * Loads Vertices from full file path
-     *
-     * @param path of file
+     * @param path of file for data
      * @return float[][] vertices
      * @throws IOException e
      */
     public static float[][] LoadVertices(String path) throws IOException {
-
         File file = new File(path);
 
         if(!file.exists())
             throw new IOException();
 
-        return LoadVertices(file);
-    }
-
-    /**
-     * Loads Vertices from Java File
-     *
-     * @param file of data
-     * @return float[][] vertices
-     * @throws IOException e
-     */
-    public static float[][] LoadVertices(File file) throws IOException {
         float[][] vertices;
-
 
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);

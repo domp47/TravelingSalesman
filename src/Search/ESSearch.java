@@ -3,17 +3,24 @@ package Search;
 import java.util.Random;
 //import java.util.concurrent.ThreadLocalRandom;
 
-public class ESSearch {
+public class ESSearch implements Runnable{
 
-    private final int N_ITERATIONS = 1000000;
-    private final int N_EPOCHS = 30;
+    private int N_ITERATIONS;
+    private int N_EPOCHS;
+
+    private RunSearch runSearch;
 
     private float[][] adjacencyMatrix;
     private int[] shortestPath;
     private float shortestDistance = Float.MAX_VALUE;
 
-    public ESSearch(float[][] adjacencyMatrix){
+    public ESSearch(RunSearch runSearch, float[][] adjacencyMatrix, int nIterations, int nEpochs)
+    {
+        this.runSearch = runSearch;
+
         this.adjacencyMatrix = adjacencyMatrix;
+        this.N_ITERATIONS = nIterations;
+        this.N_EPOCHS = nEpochs;
     }
 
     public void Search(){
@@ -29,6 +36,10 @@ public class ESSearch {
                     System.out.println("EPOCH #:" + epochs +" - New Shortest Distance: "+distance);
                     shortestPath = ranPath.clone();
                     shortestDistance = distance;
+
+                    if(shortestDistance < runSearch.GetShortestDistance()){
+                        runSearch.SetShortest(shortestPath.clone(), shortestDistance);
+                    }
                 }
                 Mutate.Mutate(ranPath);
             }
@@ -46,8 +57,9 @@ public class ESSearch {
     private float GetDistance(int[] path){
        float distance = 0;
 
-       for (int i = 0; i < path.length-1; i++) {
-           distance += adjacencyMatrix[path[i]][path[i+1]];
+        //will crash till i fix with modulus
+       for (int i = 0; i < path.length; i++) {
+           distance += adjacencyMatrix[path[i]][path[(i+1)%path.length]];
        }
 
        return distance;
@@ -99,5 +111,13 @@ public class ESSearch {
      */
     public float getShortestDistance() {
         return shortestDistance;
+    }
+
+    /**
+     * Runs the Search method on start of thread
+     */
+    @Override
+    public void run() {
+        Search();
     }
 }

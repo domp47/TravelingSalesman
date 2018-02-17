@@ -1,15 +1,16 @@
 import GUI.MainFrame;
+import Search.RunSearch;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
-        Scanner scanner =  new Scanner(System.in);
 
-        float[][] vertices = null;
+        RunSearch runSearch = new RunSearch();
 
-        MainFrame mainFrame = new MainFrame();
+        MainFrame mainFrame = new MainFrame(runSearch);
 
+//        Scanner scanner =  new Scanner(System.in);
 //        System.out.print("Enter 'e' to type file Path, or enter anything else to open file chooser: ");
 //        if(scanner.next().toLowerCase().equals("e")){
 //            System.out.print("Enter File Path: ");

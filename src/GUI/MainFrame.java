@@ -1,13 +1,20 @@
 package GUI;
 
 import DataHandler.FileChooser;
+import Exceptions.MatrixNotLoadedException;
+import Search.RunSearch;
 
 import javax.swing.*;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
+import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 
 public class MainFrame extends JFrame implements ActionListener, WindowListener {
 
@@ -17,8 +24,10 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
     private JPanel firstRow, secondRow;
     private PathPanel pathPanel;
 
+    private RunSearch runSearch;
 
-    public MainFrame(){
+    public MainFrame(RunSearch runSearch){
+        this.runSearch = runSearch;
 
         this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
@@ -32,13 +41,16 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
         best.setEditable(false);
 
         nThreadsLabel = new JLabel("Number of Threads");
-        nThreads = new JTextField(3);
+        nThreads = new JTextField("1",3);
+        nThreads.setDocument(CreateNumberDocument());
 
         nSearchesLabel = new JLabel("Number of Searches");
-        nSearches = new JTextField(10);
+        nSearches = new JTextField("30",10);
+        nSearches.setDocument(CreateNumberDocument());
 
         nIterationsLabel = new JLabel("Number of Iterations");
-        nIterations = new JTextField(10);
+        nIterations = new JTextField("1000000",10);
+        nIterations.setDocument(CreateNumberDocument());
 
         runButton = new JButton("Run Search");
         runButton.addActionListener(this);
@@ -82,6 +94,30 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
         System.exit(0);
     }
 
+    /**
+     *  Lets only numbers be input in threads, searches, and iterations
+
+     * @return new Document to restring JTextFields
+     */
+    private PlainDocument CreateNumberDocument(){
+        PlainDocument doc = new PlainDocument();
+        doc.setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int off, String str, AttributeSet attr)
+                    throws BadLocationException
+            {
+                fb.insertString(off, str.replaceAll("\\D++", ""), attr);  // remove non-digits
+            }
+            @Override
+            public void replace(FilterBypass fb, int off, int len, String str, AttributeSet attr)
+                    throws BadLocationException
+            {
+                fb.replace(off, len, str.replaceAll("\\D++", ""), attr);  // remove non-digits
+            }
+        });
+        return doc;
+    }
+
     //Run this method when an action event is detected by one of the button listeners
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == browseButton){
@@ -93,7 +129,30 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
             }
         }
         if(e.getSource() == runButton){
-            System.out.println("Run Stuff Now");
+            if( filePath.getText().equals("") || nThreads.getText().equals("") || nSearches.getText().equals("") || nIterations.getText().equals("") ){
+                JOptionPane.showMessageDialog(this, "Data Fields Missing");
+            }
+
+            try {
+                runSearch.LoadMatrix(filePath.getText(),Integer.parseInt(nThreads.getText()), Integer.parseInt(nSearches.getText()),Integer.parseInt(nIterations.getText()));
+            } catch (IOException e1) {
+                JOptionPane.showMessageDialog(this, "Error Loading Data From File Specified");
+            }
+
+            Thread searchThread = new Thread(runSearch);
+            searchThread.start();
+
+            runButton.setEnabled(false);
+
+            try {
+                searchThread.join();
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
+            runButton.setEnabled(true);
+
+            best.setText(Float.toString(runSearch.GetShortestDistance()));
+            this.revalidate();
         }
     }
 
