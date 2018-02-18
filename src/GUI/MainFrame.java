@@ -41,16 +41,19 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
         best.setEditable(false);
 
         nThreadsLabel = new JLabel("Number of Threads");
-        nThreads = new JTextField("1",3);
+        nThreads = new JTextField(3);
         nThreads.setDocument(CreateNumberDocument());
+        nThreads.setText("1");
 
         nSearchesLabel = new JLabel("Number of Searches");
-        nSearches = new JTextField("30",10);
+        nSearches = new JTextField(10);
         nSearches.setDocument(CreateNumberDocument());
+        nSearches.setText("30");
 
         nIterationsLabel = new JLabel("Number of Iterations");
-        nIterations = new JTextField("1000000",10);
+        nIterations = new JTextField(10);
         nIterations.setDocument(CreateNumberDocument());
+        nIterations.setText("1000000");
 
         runButton = new JButton("Run Search");
         runButton.addActionListener(this);
@@ -121,6 +124,29 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
     //Run this method when an action event is detected by one of the button listeners
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == browseButton){
+
+            //TODO DELETE MEEEEEE
+//            try {
+//                runSearch.LoadMatrix("/home/dom/Projects/TravelingSalesman/berlin52.txt",1,30,1000000);
+//            } catch (IOException e1) {
+//                e1.printStackTrace();
+//            }
+//
+//            Thread searchThread = new Thread(runSearch);
+//            searchThread.start();
+//
+//            runButton.setEnabled(false);
+//
+//            try {
+//                searchThread.join();
+//            } catch (InterruptedException e1) {
+//                e1.printStackTrace();
+//            }
+//            runButton.setEnabled(true);
+//
+//            pathPanel.SetPath(runSearch.getShortestPath(),runSearch.GetVertices());
+
+
             String fullPath = FileChooser.chooseFilePath("File to Read From");
 
             if(!fullPath.equals("")){
@@ -131,12 +157,14 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
         if(e.getSource() == runButton){
             if( filePath.getText().equals("") || nThreads.getText().equals("") || nSearches.getText().equals("") || nIterations.getText().equals("") ){
                 JOptionPane.showMessageDialog(this, "Data Fields Missing");
+                return;
             }
 
             try {
                 runSearch.LoadMatrix(filePath.getText(),Integer.parseInt(nThreads.getText()), Integer.parseInt(nSearches.getText()),Integer.parseInt(nIterations.getText()));
             } catch (IOException e1) {
                 JOptionPane.showMessageDialog(this, "Error Loading Data From File Specified");
+                return;
             }
 
             Thread searchThread = new Thread(runSearch);
@@ -153,6 +181,9 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
 
             best.setText(Float.toString(runSearch.GetShortestDistance()));
             this.revalidate();
+
+            pathPanel.SetPath(runSearch.getShortestPath(), runSearch.GetVertices());
+            pathPanel.repaint();
         }
     }
 

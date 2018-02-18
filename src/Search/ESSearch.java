@@ -13,14 +13,16 @@ public class ESSearch implements Runnable{
     private float[][] adjacencyMatrix;
     private int[] shortestPath;
     private float shortestDistance = Float.MAX_VALUE;
+    private Random rnd;
 
-    public ESSearch(RunSearch runSearch, float[][] adjacencyMatrix, int nIterations, int nEpochs)
+    public ESSearch(RunSearch runSearch, float[][] adjacencyMatrix, int nIterations, int nEpochs, int threadIndex)
     {
         this.runSearch = runSearch;
 
         this.adjacencyMatrix = adjacencyMatrix;
         this.N_ITERATIONS = nIterations;
         this.N_EPOCHS = nEpochs;
+        rnd = new Random( System.currentTimeMillis()*(1 + threadIndex));
     }
 
     public void Search(){
@@ -41,7 +43,7 @@ public class ESSearch implements Runnable{
                         runSearch.SetShortest(shortestPath.clone(), shortestDistance);
                     }
                 }
-                Mutate.Mutate(ranPath);
+                new Mutate().Mutate(ranPath, rnd);
             }
         }
 
@@ -88,7 +90,6 @@ public class ESSearch implements Runnable{
      * @param ar to shuffle
      */
     private void Shuffle(int[] ar) {
-        Random rnd = new Random();
         for (int i = ar.length - 1; i > 0; i--)
         {
             int index = rnd.nextInt(i + 1);

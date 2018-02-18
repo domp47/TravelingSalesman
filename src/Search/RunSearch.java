@@ -34,6 +34,9 @@ public class RunSearch implements Runnable {
         this.nThreads = nThreads;
         this.nSearches = nSearches;
         this.nIterations = nIterations;
+
+        shortestPath = new int[0];
+        shortestDistance = Float.MAX_VALUE;
     }
 
     public void ESSearch() throws MatrixNotLoadedException {
@@ -45,7 +48,7 @@ public class RunSearch implements Runnable {
         Thread[] esThreads = new Thread[nThreads];
 
         for (int i = 0; i < nThreads; i++) {
-            esSearches[i] = new ESSearch(this, adjacencyMatrix, nIterations, nSearches);
+            esSearches[i] = new ESSearch(this, adjacencyMatrix, nIterations, nSearches, i);
             esThreads[i] = new Thread(esSearches[i]);
             esThreads[i].start();
         }

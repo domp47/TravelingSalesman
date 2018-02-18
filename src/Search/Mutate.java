@@ -6,6 +6,7 @@ public class Mutate {
 
     private static final int N_INTERCHANGES = 3;
 
+    public Mutate(){}
 
     /**
      *
@@ -13,8 +14,7 @@ public class Mutate {
      *
      * @param array to mutate
      */
-    public static void Mutate(int[] array){
-        Random r = new Random();
+    public void Mutate(int[] array, Random r){
 
         int[] ranIndexes = new int[N_INTERCHANGES];
 
@@ -53,7 +53,7 @@ public class Mutate {
      * @param val to search for
      * @return true if array contains val
      */
-    private static boolean Contains(int[] array, int val){
+    private boolean Contains(int[] array, int val){
         for(int i: array){
             if(i == val)
                 return true;
