@@ -1,4 +1,4 @@
-package Search;
+package Search.ES;
 
 public class Permutations {
     private int permIndex;

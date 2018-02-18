@@ -1,25 +1,28 @@
-package Search;
+package Search.ES;
+
+import City.City;
+import Search.RunSearch;
 
 import java.util.Random;
 //import java.util.concurrent.ThreadLocalRandom;
 
-public class ESSearch implements Runnable{
+public class  ESSearch implements Runnable{
 
     private int N_ITERATIONS;
     private int N_EPOCHS;
 
     private RunSearch runSearch;
 
-    private float[][] adjacencyMatrix;
+    private City[] cities;
     private int[] shortestPath;
     private float shortestDistance = Float.MAX_VALUE;
     private Random rnd;
 
-    public ESSearch(RunSearch runSearch, float[][] adjacencyMatrix, int nIterations, int nEpochs, int threadIndex)
+    public ESSearch(RunSearch runSearch, City[] cities, int nIterations, int nEpochs, int threadIndex)
     {
         this.runSearch = runSearch;
 
-        this.adjacencyMatrix = adjacencyMatrix;
+        this.cities = cities;
         this.N_ITERATIONS = nIterations;
         this.N_EPOCHS = nEpochs;
         rnd = new Random( System.currentTimeMillis()*(1 + threadIndex));
@@ -28,14 +31,14 @@ public class ESSearch implements Runnable{
     public void Search(){
 
         for (int epochs = 0; epochs < N_EPOCHS; epochs++) {
-            int[] ranPath = GenerateRandomPath(adjacencyMatrix.length);
+            int[] ranPath = GenerateRandomPath(cities.length);
 
             for (int i = 0; i < N_ITERATIONS; i++) {
 
                 float distance = GetDistance(ranPath);
 
                 if(distance<shortestDistance){
-                    System.out.println("EPOCH #:" + epochs +" - New Shortest Distance: "+distance);
+//                    System.out.println("EPOCH #:" + epochs +" - New Shortest Distance: "+distance);
                     shortestPath = ranPath.clone();
                     shortestDistance = distance;
 
@@ -57,14 +60,28 @@ public class ESSearch implements Runnable{
      * @return total distance of path
      */
     private float GetDistance(int[] path){
-       float distance = 0;
+       double xDistance = 0;
+       double yDistance = 0;
 
-        //will crash till i fix with modulus
        for (int i = 0; i < path.length; i++) {
-           distance += adjacencyMatrix[path[i]][path[(i+1)%path.length]];
+           xDistance += Math.abs(cities[path[i]].getX() - cities[path[(i+1)%path.length]].getX());
+           yDistance += Math.abs(cities[path[i]].getY() - cities[path[(i+1)%path.length]].getY());
        }
 
-       return distance;
+       float distance = 0;
+
+        for (int i = 0; i < path.length; i++) {
+            distance += cities[path[i]].GetDistance(cities[path[(i+1)%cities.length]]);
+        }
+
+        float trevsDistance = (float) Math.sqrt((xDistance*xDistance) + (yDistance+yDistance));
+        float myDistance = distance;
+
+        System.out.println(trevsDistance);
+        System.out.println(myDistance);
+        System.out.println("----------------------------------");
+
+       return trevsDistance;
     }
 
     /**

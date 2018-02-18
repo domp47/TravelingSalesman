@@ -1,14 +1,15 @@
 package Search;
 
-import DataHandler.CreateAdjacencyMatrix;
+import City.City;
 import DataHandler.LoadFromFile;
-import Exceptions.MatrixNotLoadedException;
+import Exceptions.CityNotLoadedException;
+import Search.ES.ESSearch;
 
 import java.io.IOException;
 
 public class RunSearch implements Runnable {
-    private float[][] vertices;
-    private float[][] adjacencyMatrix;
+
+    private City[] cities = null;
 
     private int[] shortestPath;
     private float shortestDistance = Float.MAX_VALUE;
@@ -19,17 +20,8 @@ public class RunSearch implements Runnable {
     }
 
     public void LoadMatrix(String filePath, int nThreads, int nSearches, int nIterations) throws IOException {
-        vertices = LoadFromFile.LoadVertices(filePath);
 
-        if(vertices ==null){
-            throw new IOException();
-        }
-
-        adjacencyMatrix = CreateAdjacencyMatrix.CreateAdjacencyMatrix(vertices);
-
-        if(adjacencyMatrix==null){
-            throw new IOException();
-        }
+        cities = LoadFromFile.LoadCities(filePath);
 
         this.nThreads = nThreads;
         this.nSearches = nSearches;
@@ -39,16 +31,16 @@ public class RunSearch implements Runnable {
         shortestDistance = Float.MAX_VALUE;
     }
 
-    public void ESSearch() throws MatrixNotLoadedException {
+    public void ESSearch() throws CityNotLoadedException {
 
-        if(adjacencyMatrix==null || vertices==null)
-            throw new MatrixNotLoadedException();
+        if(cities==null)
+            throw new CityNotLoadedException();
 
         ESSearch[] esSearches = new ESSearch[nThreads];
         Thread[] esThreads = new Thread[nThreads];
 
         for (int i = 0; i < nThreads; i++) {
-            esSearches[i] = new ESSearch(this, adjacencyMatrix, nIterations, nSearches, i);
+            esSearches[i] = new ESSearch(this, cities, nIterations, nSearches, i);
             esThreads[i] = new Thread(esSearches[i]);
             esThreads[i].start();
         }
@@ -62,12 +54,8 @@ public class RunSearch implements Runnable {
         }
     }
 
-    public float[][] GetVertices(){
-        return vertices;
-    }
-
-    public float[][] GetMatrix(){
-        return adjacencyMatrix;
+    public City[] GetCities(){
+        return cities;
     }
 
     public synchronized void SetShortest(int[] path, float distance){
@@ -87,7 +75,7 @@ public class RunSearch implements Runnable {
     public void run() {
         try {
             ESSearch();
-        } catch (MatrixNotLoadedException e) {
+        } catch (CityNotLoadedException e) {
             e.printStackTrace();
         }
     }

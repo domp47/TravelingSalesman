@@ -1,5 +1,7 @@
 package GUI;
 
+import City.City;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -20,7 +22,7 @@ public class PathPanel extends JPanel {
         repaint();
     }
 
-    public void SetPath(int[] path, float[][] vertices){
-        pathCanvas.SetPath(path, vertices);
+    public void SetPath(int[] path, City[] cities){
+        pathCanvas.SetPath(path, cities);
     }
 }

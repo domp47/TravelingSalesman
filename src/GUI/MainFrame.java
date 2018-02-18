@@ -1,7 +1,6 @@
 package GUI;
 
 import DataHandler.FileChooser;
-import Exceptions.MatrixNotLoadedException;
 import Search.RunSearch;
 
 import javax.swing.*;
@@ -182,7 +181,7 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
             best.setText(Float.toString(runSearch.GetShortestDistance()));
             this.revalidate();
 
-            pathPanel.SetPath(runSearch.getShortestPath(), runSearch.GetVertices());
+            pathPanel.SetPath(runSearch.getShortestPath(), runSearch.GetCities());
             pathPanel.repaint();
         }
     }

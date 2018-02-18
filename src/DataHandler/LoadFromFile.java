@@ -1,8 +1,11 @@
 package DataHandler;
 
+import City.City;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
+import java.util.List;
 
 public class LoadFromFile {
     /**
@@ -12,13 +15,13 @@ public class LoadFromFile {
      * @return float[][] vertices
      * @throws IOException e
      */
-    public static float[][] LoadVertices(String path) throws IOException {
+    public static City[] LoadCities(String path) throws IOException {
         File file = new File(path);
 
         if(!file.exists())
             throw new IOException();
 
-        float[][] vertices;
+        City[] cities;
 
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -35,9 +38,9 @@ public class LoadFromFile {
             return null;
         }
 
-        vertices = new float[nVertices][];
+        cities = new City[nVertices];
 
-        for(int i = 0; i < vertices.length; i++){
+        for(int i = 0; i < cities.length; i++){
             line = bufferedReader.readLine();
 
             if(line==null){
@@ -52,13 +55,11 @@ public class LoadFromFile {
                 return null;
             }
 
-            float[] vertex = new float[2];
-            vertex[0] = Float.parseFloat(splitString[1]);
-            vertex[1] = Float.parseFloat(splitString[2]);
+            City city = new City(Float.parseFloat(splitString[1]), Float.parseFloat(splitString[2]));
 
-            vertices[i] = vertex;
+            cities[i] = city;
         }
 
-        return vertices;
+        return cities;
     }
 }
