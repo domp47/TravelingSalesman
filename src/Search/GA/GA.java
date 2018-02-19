@@ -43,7 +43,7 @@ public class GA implements Runnable{
      * @param cities
      */
     public GA(RunSearch runSearch, int populationSize, int maxGen, long threadIndex, City[] cities){
-        this(runSearch,1, 0.1, populationSize, maxGen, 3, 3, threadIndex, cities, CrossoverType.UOX);
+        this(runSearch,1, 0.1, populationSize, maxGen, 3, 3, threadIndex, cities, CrossoverType.PMX);
     }
 
     /**
@@ -71,6 +71,8 @@ public class GA implements Runnable{
         this.crossoverType = crossoverType;
 
         this.fittestChromosome = null;
+
+        System.out.println("Starting GA");
 
         this.initPopulation = GeneratePopulation(cities);
     }
@@ -188,6 +190,15 @@ public class GA implements Runnable{
         new Mutate().Mutate(path,random);
 
         return new Chromosome(path);
+
+//        City[] path = child.getPath();
+//        int index1 = random.nextInt(path.length);
+//        int index2 = random.nextInt(path.length);
+//        City temp = path[index1];
+//        path[index1] = path[index2];
+//        path[index2] = temp;
+//        return new Chromosome(path);
+
     }
 
     private Chromosome[] PerformUOX(Chromosome parent1, Chromosome parent2) {

@@ -76,6 +76,7 @@ public class RunSearch implements Runnable {
                     e.printStackTrace();
                 }
             }
+            System.out.println(bestChromosome.getPath().length);
         }
 
     }

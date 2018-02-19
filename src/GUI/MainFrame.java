@@ -222,11 +222,13 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
             pathPanel.repaint();
         }
         if(e.getSource() == ESButton){
-            searchAlgorithm = RunSearch.SearchAlgorithm.ES;
+            this.searchAlgorithm = RunSearch.SearchAlgorithm.ES;
+            runSearch.SetSearchAlgorithm(RunSearch.SearchAlgorithm.ES);
             CreateLayout();
         }
         if(e.getSource() == GAButton){
-            searchAlgorithm = RunSearch.SearchAlgorithm.GA;
+            this.searchAlgorithm = RunSearch.SearchAlgorithm.GA;
+            runSearch.SetSearchAlgorithm(RunSearch.SearchAlgorithm.GA);
             CreateLayout();
         }
     }
