@@ -18,10 +18,15 @@ import java.io.IOException;
 public class MainFrame extends JFrame implements ActionListener, WindowListener {
 
     private JButton browseButton, runButton;
-    private JLabel filePathLabel, bestLabel, nThreadsLabel, nSearchesLabel, nIterationsLabel;
-    private JTextField filePath, best, nThreads, nSearches, nIterations;
-    private JPanel firstRow, secondRow;
+    private JLabel filePathLabel, bestLabel, nThreadsLabel, nSearchesLabel, nIterationsLabel, populationSizeLabel, maxGenLabel;
+    private JTextField filePath, best, nThreads, nSearches, nIterations, populationSize, maxGen;
+    private JRadioButton ESButton, GAButton;
+    private ButtonGroup algorithmButtons;
+
+    private JPanel firstRow, secondRow, algorithmChoicePanel, algorithmInputsPanel;
     private PathPanel pathPanel;
+
+    private RunSearch.SearchAlgorithm searchAlgorithm = RunSearch.SearchAlgorithm.ES;
 
     private RunSearch runSearch;
 
@@ -30,6 +35,15 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
 
         this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
+        Init();
+        CreateLayout();
+
+        addWindowListener(this);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+    }
+
+    private void Init(){
         filePathLabel = new JLabel("File Path");
         filePath = new JTextField(20);
         browseButton = new JButton("Browse");
@@ -54,8 +68,22 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
         nIterations.setDocument(CreateNumberDocument());
         nIterations.setText("1000000");
 
+        populationSizeLabel = new JLabel("Population Size");
+        populationSize = new JTextField(5);
+        populationSize.setDocument(CreateNumberDocument());
+        populationSize.setText("70");
+
+        maxGenLabel = new JLabel("Max Generations");
+        maxGen = new JTextField(7);
+        maxGen.setDocument(CreateNumberDocument());
+        maxGen.setText("750");
+
         runButton = new JButton("Run Search");
         runButton.addActionListener(this);
+    }
+
+    private void CreateLayout(){
+        this.getContentPane().removeAll();
 
         firstRow = new JPanel();
         firstRow.setLayout(new FlowLayout());
@@ -68,12 +96,47 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
         firstRow.add(nThreads);
         add(firstRow);
 
+
         secondRow = new JPanel();
         secondRow.setLayout(new FlowLayout());
-        secondRow.add(nSearchesLabel);
-        secondRow.add(nSearches);
-        secondRow.add(nIterationsLabel);
-        secondRow.add(nIterations);
+
+        algorithmChoicePanel = new JPanel();
+        algorithmChoicePanel.setLayout(new FlowLayout());
+        ESButton = new JRadioButton("ES Search");
+        GAButton = new JRadioButton("GA Search");
+
+        algorithmButtons = new ButtonGroup();
+        algorithmButtons.add(ESButton);
+        algorithmButtons.add(GAButton);
+
+        ESButton.addActionListener(this);
+        GAButton.addActionListener(this);
+
+        algorithmChoicePanel.add(ESButton);
+        algorithmChoicePanel.add(GAButton);
+
+        algorithmInputsPanel = new JPanel();
+        algorithmInputsPanel.setLayout(new FlowLayout());
+
+        if(searchAlgorithm == RunSearch.SearchAlgorithm.ES){
+            ESButton.setSelected(true);
+
+            algorithmInputsPanel.add(nSearchesLabel);
+            algorithmInputsPanel.add(nSearches);
+            algorithmInputsPanel.add(nIterationsLabel);
+            algorithmInputsPanel.add(nIterations);
+        }
+        if(searchAlgorithm == RunSearch.SearchAlgorithm.GA){
+            GAButton.setSelected(true);
+
+            algorithmInputsPanel.add(populationSizeLabel);
+            algorithmInputsPanel.add(populationSize);
+            algorithmInputsPanel.add(maxGenLabel);
+            algorithmInputsPanel.add(maxGen);
+        }
+
+        secondRow.add(algorithmChoicePanel);
+        secondRow.add(algorithmInputsPanel);
         secondRow.add(runButton);
         add(secondRow);
 
@@ -83,10 +146,6 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
         this.setPreferredSize(new Dimension(1000, 850));
         this.pack();
         this.setVisible(true);
-
-        addWindowListener(this);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
     }
 
     //Run this method when the window closes
@@ -123,28 +182,6 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
     //Run this method when an action event is detected by one of the button listeners
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == browseButton){
-
-            //TODO DELETE MEEEEEE
-//            try {
-//                runSearch.LoadMatrix("/home/dom/Projects/TravelingSalesman/berlin52.txt",1,30,1000000);
-//            } catch (IOException e1) {
-//                e1.printStackTrace();
-//            }
-//
-//            Thread searchThread = new Thread(runSearch);
-//            searchThread.start();
-//
-//            runButton.setEnabled(false);
-//
-//            try {
-//                searchThread.join();
-//            } catch (InterruptedException e1) {
-//                e1.printStackTrace();
-//            }
-//            runButton.setEnabled(true);
-//
-//            pathPanel.SetPath(runSearch.getShortestPath(),runSearch.GetVertices());
-
 
             String fullPath = FileChooser.chooseFilePath("File to Read From");
 
@@ -183,6 +220,14 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
 
             pathPanel.SetPath(runSearch.getBestChromosome().getPath());
             pathPanel.repaint();
+        }
+        if(e.getSource() == ESButton){
+            searchAlgorithm = RunSearch.SearchAlgorithm.ES;
+            CreateLayout();
+        }
+        if(e.getSource() == GAButton){
+            searchAlgorithm = RunSearch.SearchAlgorithm.GA;
+            CreateLayout();
         }
     }
 
