@@ -1,4 +1,4 @@
-package Search.GA;
+package Search;
 
 import City.City;
 
@@ -8,10 +8,10 @@ public class Chromosome {
 
     public Chromosome(City[] path){
         this.path = path;
-        fitness = GetFitness();
+        fitness = FindFitness();
     }
 
-    private float GetFitness() {
+    private float FindFitness() {
         float distance = 0;
 
         for (int i = 0; i < path.length; i++) {
@@ -25,7 +25,7 @@ public class Chromosome {
         return path;
     }
 
-    public float getFitness() {
+    public float GetFitness() {
         return fitness;
     }
 }

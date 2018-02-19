@@ -4,6 +4,7 @@ import City.City;
 import DataHandler.LoadFromFile;
 import Exceptions.CityNotLoadedException;
 import Search.ES.ESSearch;
+import Search.GA.GA;
 
 import java.io.IOException;
 
@@ -11,12 +12,19 @@ public class RunSearch implements Runnable {
 
     private City[] cities = null;
 
-    private int[] shortestPath;
-    private float shortestDistance = Float.MAX_VALUE;
+    private Chromosome bestChromosome = null;
 
     private int nThreads, nSearches, nIterations;
 
+    private SearchAlgorithm searchAlgorithm = SearchAlgorithm.ES;
+
+
+
+    public enum SearchAlgorithm{
+        ES, GA
+    }
     public RunSearch(){
+
     }
 
     public void LoadMatrix(String filePath, int nThreads, int nSearches, int nIterations) throws IOException {
@@ -26,57 +34,70 @@ public class RunSearch implements Runnable {
         this.nThreads = nThreads;
         this.nSearches = nSearches;
         this.nIterations = nIterations;
-
-        shortestPath = new int[0];
-        shortestDistance = Float.MAX_VALUE;
     }
 
-    public void ESSearch() throws CityNotLoadedException {
+    private void Search() throws CityNotLoadedException {
 
         if(cities==null)
             throw new CityNotLoadedException();
 
-        ESSearch[] esSearches = new ESSearch[nThreads];
-        Thread[] esThreads = new Thread[nThreads];
+        if(searchAlgorithm == SearchAlgorithm.ES){
+            ESSearch[] esSearches = new ESSearch[nThreads];
+            Thread[] esThreads = new Thread[nThreads];
 
-        for (int i = 0; i < nThreads; i++) {
-            esSearches[i] = new ESSearch(this, cities, nIterations, nSearches, i);
-            esThreads[i] = new Thread(esSearches[i]);
-            esThreads[i].start();
-        }
+            for (int i = 0; i < nThreads; i++) {
+                esSearches[i] = new ESSearch(this, cities, nIterations, nSearches, i);
+                esThreads[i] = new Thread(esSearches[i]);
+                esThreads[i].start();
+            }
 
-        for (int i = 0; i < nThreads; i++) {
-            try {
-                esThreads[i].join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            for (int i = 0; i < nThreads; i++) {
+                try {
+                    esThreads[i].join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
-    }
+        if(searchAlgorithm == SearchAlgorithm.GA){
+            GA[] gaSearches = new GA[nThreads];
+            Thread[] gaThreads = new Thread[nThreads];
 
-    public City[] GetCities(){
-        return cities;
-    }
+            for (int i = 0; i < nThreads; i++) {
+                gaSearches[i] = new GA(this, i,cities);
+                gaThreads[i] = new Thread(gaSearches[i]);
+                gaThreads[i].start();
+            }
 
-    public synchronized void SetShortest(int[] path, float distance){
-        shortestPath = path;
-        shortestDistance = distance;
-    }
+            for (int i = 0; i < nThreads; i++) {
+                try {
+                    gaThreads[i].join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
-    public synchronized float GetShortestDistance(){
-        return shortestDistance;
-    }
-
-    public synchronized int[] getShortestPath() {
-        return shortestPath;
     }
 
     @Override
     public void run() {
         try {
-            ESSearch();
+            Search();
         } catch (CityNotLoadedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void SetSearchAlgorithm(SearchAlgorithm searchAlgorithm) {
+        this.searchAlgorithm = searchAlgorithm;
+    }
+
+    public synchronized Chromosome getBestChromosome() {
+        return bestChromosome;
+    }
+
+    public synchronized void setBestChromosome(Chromosome bestChromosome) {
+        this.bestChromosome = bestChromosome;
     }
 }

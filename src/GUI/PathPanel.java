@@ -22,7 +22,7 @@ public class PathPanel extends JPanel {
         repaint();
     }
 
-    public void SetPath(int[] path, City[] cities){
-        pathCanvas.SetPath(path, cities);
+    public void SetPath(City[] path){
+        pathCanvas.SetPath(path);
     }
 }

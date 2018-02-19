@@ -7,20 +7,17 @@ import java.awt.*;
 
 public class PathCanvas extends JPanel{
 
-    private int[] path = null;
-    private City[] cities = null;
+    private City[] path = null;
     private float maxW, maxH;
 
-    public void SetPath(int[] path, City[] cities){
+    public void SetPath(City[] path){
 
         this.path = path;
-        this.cities = cities;
-
 
         float maxW = Float.MIN_VALUE;
         float maxH = Float.MIN_VALUE;
 
-        for (City city : cities) {
+        for (City city : path) {
             if (city.getX() > maxW)
                 maxW = city.getX();
             if (city.getY() > maxH)
@@ -40,15 +37,15 @@ public class PathCanvas extends JPanel{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
 
-        if(path != null && cities != null){
+        if(path != null){
             float ratio = FindRatio();
 
             for (int i = 0; i < path.length; i++) {
-                int x1 = (int) (cities[path[i]].getX() * ratio);
-                int x2 = (int) (cities[path[(i+1)%path.length]].getX() * ratio);
+                int x1 = (int) (path[i].getX() * ratio);
+                int x2 = (int) (path[(i+1)%path.length].getX() * ratio);
 
-                int y1 = (int) (cities[path[i]].getY() * ratio);
-                int y2 = (int) (cities[path[(i+1)%path.length]].getY() * ratio);
+                int y1 = (int) (path[i].getY() * ratio);
+                int y2 = (int) (path[(i+1)%path.length].getY() * ratio);
 
                 g.drawLine(x1,y1,x2,y2);
             }

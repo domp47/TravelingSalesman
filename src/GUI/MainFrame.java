@@ -178,10 +178,10 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
             }
             runButton.setEnabled(true);
 
-            best.setText(Float.toString(runSearch.GetShortestDistance()));
+            best.setText(Float.toString(runSearch.getBestChromosome().GetFitness()));
             this.revalidate();
 
-            pathPanel.SetPath(runSearch.getShortestPath(), runSearch.GetCities());
+            pathPanel.SetPath(runSearch.getBestChromosome().getPath());
             pathPanel.repaint();
         }
     }
