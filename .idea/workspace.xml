@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fed54a46-3832-4c81-ab78-a907c0e0cb4a" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelingSalesman/Search/GA/GA$CrossoverType.class" afterPath="$PROJECT_DIR$/out/production/TravelingSalesman/Search/GA/GA$CrossoverType.class" />
       <change beforePath="$PROJECT_DIR$/out/production/TravelingSalesman/Search/GA/GA.class" afterPath="$PROJECT_DIR$/out/production/TravelingSalesman/Search/GA/GA.class" />
       <change beforePath="$PROJECT_DIR$/src/Search/GA/GA.java" afterPath="$PROJECT_DIR$/src/Search/GA/GA.java" />
-      <change beforePath="$PROJECT_DIR$/src/Search/RunSearch.java" afterPath="$PROJECT_DIR$/src/Search/RunSearch.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -83,17 +81,18 @@
       <file leaf-file-name="GA.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Search/GA/GA.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="43" column="99" lean-forward="false" selection-start-line="43" selection-start-column="99" selection-end-line="43" selection-end-column="99" />
+            <state relative-caret-position="253">
+              <caret line="217" column="63" lean-forward="true" selection-start-line="217" selection-start-column="63" selection-end-line="217" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#518#519#0" expanded="true" />
                 <element signature="e#559#560#0" expanded="true" />
                 <element signature="e#684#685#0" expanded="true" />
                 <element signature="e#743#744#0" expanded="true" />
-                <element signature="e#7541#7572#0" expanded="true" />
-                <element signature="e#14281#14282#0" expanded="true" />
-                <element signature="e#14321#14322#0" expanded="true" />
+                <element signature="e#6490#6521#0" expanded="true" />
+                <element signature="e#8146#8177#0" expanded="true" />
+                <element signature="e#14886#14887#0" expanded="true" />
+                <element signature="e#14926#14927#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -508,7 +507,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90807000" />
+    <option name="totallyTimeSpent" value="91484000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="607" y="2521" width="2562" height="1413" extended-state="6" />
@@ -818,7 +817,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
           <caret line="47" column="49" lean-forward="false" selection-start-line="47" selection-start-column="49" selection-end-line="47" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -826,7 +824,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -841,7 +838,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -880,7 +876,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
           <caret line="747" column="0" lean-forward="false" selection-start-line="747" selection-start-column="0" selection-end-line="747" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -898,18 +893,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
           <caret line="2882" column="0" lean-forward="false" selection-start-line="2882" selection-start-column="0" selection-end-line="2882" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Search/GA/TestPMX.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="41" lean-forward="false" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Search/GA/TestPMX.java" />
     <entry file="file://$PROJECT_DIR$/src/Search/Mutate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -950,17 +937,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Search/GA/GA.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="43" column="99" lean-forward="false" selection-start-line="43" selection-start-column="99" selection-end-line="43" selection-end-column="99" />
+        <state relative-caret-position="253">
+          <caret line="217" column="63" lean-forward="true" selection-start-line="217" selection-start-column="63" selection-end-line="217" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#518#519#0" expanded="true" />
             <element signature="e#559#560#0" expanded="true" />
             <element signature="e#684#685#0" expanded="true" />
             <element signature="e#743#744#0" expanded="true" />
-            <element signature="e#7541#7572#0" expanded="true" />
-            <element signature="e#14281#14282#0" expanded="true" />
-            <element signature="e#14321#14322#0" expanded="true" />
+            <element signature="e#6490#6521#0" expanded="true" />
+            <element signature="e#8146#8177#0" expanded="true" />
+            <element signature="e#14886#14887#0" expanded="true" />
+            <element signature="e#14926#14927#0" expanded="true" />
           </folding>
         </state>
       </provider>

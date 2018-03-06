@@ -208,32 +208,48 @@ public class GA implements Runnable{
         new Mutate().Mutate(path,random);
 
         return new Chromosome(path);
-
-//        City[] path = child.getPath();
-//        int index1 = random.nextInt(path.length);
-//        int index2 = random.nextInt(path.length);
-//        City temp = path[index1];
-//        path[index1] = path[index2];
-//        path[index2] = temp;
-//        return new Chromosome(path);
-
     }
 
+    @SuppressWarnings("Duplicates")
     private Chromosome[] PerformUOX(Chromosome parent1, Chromosome parent2) {
         Chromosome[] children = new Chromosome[2];
 
         City[] child1Path = new City[parent1.getPath().length];
         City[] child2Path = new City[parent1.getPath().length];
+        HashSet<City> child1Contents = new HashSet<>();
+        HashSet<City> child2Contents = new HashSet<>();
 
         for (int i = 0; i < parent1.getPath().length; i++) {
             if(random.nextDouble() < 0.5){
-                child2Path[i] = parent1.getPath()[i];
-                child1Path[i] = parent2.getPath()[i];
-            }else{
-                child1Path[i] = parent1.getPath()[i];
                 child2Path[i] = parent2.getPath()[i];
+                child1Path[i] = parent1.getPath()[i];
             }
         }
+
+        for(int i = 0; i<parent1.getPath().length; i++){
+            if(child1Path[i]== null){
+                for(int j=0; j<parent1.getPath().length; j++){
+                    City attempt = parent2.getPath()[j];
+                    if(!child1Contents.contains(attempt)){
+                        child1Path[i]= attempt;
+                        child1Contents.add(attempt);
+                        break;
+                    }
+                }
+            }
+
+            if(child2Path[i]== null){
+                for(int j=0; j<parent2.getPath().length; j++){
+                    City attempt = parent1.getPath()[j];
+                    if(!child2Contents.contains(attempt)){
+                        child2Path[i]= attempt;
+                        child2Contents.add(attempt);
+                        break;
+                    }
+                }
+            }
+        }
+
         children[0] = new Chromosome(child1Path);
         children[1] = new Chromosome(child2Path);
         return children;
