@@ -30,8 +30,8 @@ public class GA implements Runnable{
         UOX, PMX
     }
 
-    public GA(RunSearch runSearch, long threadIndex, City[] cities){
-        this(runSearch,70,750, threadIndex, cities);
+    public GA(RunSearch runSearch, long threadIndex, City[] cities, CrossoverType crossoverType){
+        this(runSearch,70,750, threadIndex, cities, crossoverType);
     }
 
     /**
@@ -40,7 +40,7 @@ public class GA implements Runnable{
      * @param threadIndex
      * @param cities
      */
-    public GA(RunSearch runSearch, int populationSize, int maxGen, long threadIndex, City[] cities){
+    public GA(RunSearch runSearch, int populationSize, int maxGen, long threadIndex, City[] cities, CrossoverType crossoverType){
         this(runSearch,1, 0.1, populationSize, maxGen, 3, 3, threadIndex, cities, CrossoverType.UOX);
     }
 
@@ -220,9 +220,12 @@ public class GA implements Runnable{
         HashSet<City> child2Contents = new HashSet<>();
 
         for (int i = 0; i < parent1.getPath().length; i++) {
-            if(random.nextDouble() < 0.5){
+            if(random.nextBoolean()){
                 child2Path[i] = parent2.getPath()[i];
+                child2Contents.add(parent2.getPath()[i]);
+
                 child1Path[i] = parent1.getPath()[i];
+                child1Contents.add(parent1.getPath()[i]);
             }
         }
 
@@ -347,7 +350,7 @@ public class GA implements Runnable{
         for (int i = 0; i < cities.length; i++)
         {
             if (lump.contains(cities[i])){
-                System.out.println(i);
+//                System.out.println(i);
                 return true;
             }
             lump.add(cities[i]);

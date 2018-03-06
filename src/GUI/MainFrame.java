@@ -14,6 +14,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
 
+import Search.GA.GA;
 import Search.RunSearch;
 import TravelingSalesMan.TravelingSalesMan;
 
@@ -22,10 +23,10 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
     private JButton browseButton, runButton;
     private JLabel filePathLabel, bestLabel, nThreadsLabel, nSearchesLabel, nIterationsLabel, populationSizeLabel, maxGenLabel;
     private JTextField filePath, best, nThreads, nSearches, nIterations, populationSize, maxGen;
-    private JRadioButton ESButton, GAButton;
-    private ButtonGroup algorithmButtons;
+    private JRadioButton ESButton, GAButton, UOXButton, PMXButton;
+    private ButtonGroup algorithmButtons, crossOverButtons;
 
-    private JPanel firstRow, secondRow, algorithmChoicePanel, algorithmInputsPanel;
+    private JPanel firstRow, secondRow, algorithmChoicePanel, algorithmInputsPanel, crossOverPanel;
     private PathPanel pathPanel;
 
     private RunSearch.SearchAlgorithm searchAlgorithm = RunSearch.SearchAlgorithm.ES;
@@ -69,6 +70,9 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
         nIterations = new JTextField(10);
         nIterations.setDocument(CreateNumberDocument());
         nIterations.setText("1000000");
+
+        PMXButton = new JRadioButton("PMX");
+        UOXButton = new JRadioButton("UOX");
 
         populationSizeLabel = new JLabel("Population Size");
         populationSize = new JTextField(5);
@@ -131,6 +135,21 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
         if(searchAlgorithm == RunSearch.SearchAlgorithm.GA){
             GAButton.setSelected(true);
 
+            crossOverPanel = new JPanel();
+            crossOverPanel.setLayout(new FlowLayout());
+
+            crossOverButtons = new ButtonGroup();
+            crossOverButtons.add(UOXButton);
+            crossOverButtons.add(PMXButton);
+
+            UOXButton.addActionListener(this);
+            PMXButton.addActionListener(this);
+
+            crossOverPanel.add(UOXButton);
+            crossOverPanel.add(PMXButton);
+            PMXButton.setSelected(true);
+
+            algorithmInputsPanel.add(crossOverPanel);
             algorithmInputsPanel.add(populationSizeLabel);
             algorithmInputsPanel.add(populationSize);
             algorithmInputsPanel.add(maxGenLabel);
@@ -207,21 +226,6 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
 
             Thread searchThread = new Thread(travelingSalesMan.getRunSearch());
             searchThread.start();
-
-//            runButton.setEnabled(false);
-//
-//            try {
-//                searchThread.join();
-//            } catch (InterruptedException e1) {
-//                e1.printStackTrace();
-//            }
-//            runButton.setEnabled(true);
-
-//            best.setText(Float.toString(travelingSalesMan.getRunSearch().getBestChromosome().GetFitness()));
-//            this.revalidate();
-//
-//            pathPanel.SetPath(travelingSalesMan.getRunSearch().getBestChromosome().getPath());
-//            pathPanel.repaint();
         }
         if(e.getSource() == ESButton){
             this.searchAlgorithm = RunSearch.SearchAlgorithm.ES;
@@ -232,6 +236,12 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
             this.searchAlgorithm = RunSearch.SearchAlgorithm.GA;
             travelingSalesMan.getRunSearch().SetSearchAlgorithm(RunSearch.SearchAlgorithm.GA);
             CreateLayout();
+        }
+        if(e.getSource() == PMXButton){
+            travelingSalesMan.getRunSearch().setCrossoverType(GA.CrossoverType.PMX);
+        }
+        if(e.getSource() == UOXButton){
+            travelingSalesMan.getRunSearch().setCrossoverType(GA.CrossoverType.UOX);
         }
     }
 
@@ -248,5 +258,13 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
 
     public JTextField getBest() {
         return best;
+    }
+
+    public void EnableSearch(){
+        this.runButton.setVisible(true);
+    }
+
+    public void DisableSearch(){
+        this.runButton.setVisible(false);
     }
 }

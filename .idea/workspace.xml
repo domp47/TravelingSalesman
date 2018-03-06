@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fed54a46-3832-4c81-ab78-a907c0e0cb4a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelingSalesman/Search/GA/GA.class" afterPath="$PROJECT_DIR$/out/production/TravelingSalesman/Search/GA/GA.class" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/MainFrame.java" afterPath="$PROJECT_DIR$/src/GUI/MainFrame.java" />
       <change beforePath="$PROJECT_DIR$/src/Search/GA/GA.java" afterPath="$PROJECT_DIR$/src/Search/GA/GA.java" />
+      <change beforePath="$PROJECT_DIR$/src/Search/RunSearch.java" afterPath="$PROJECT_DIR$/src/Search/RunSearch.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,14 +25,18 @@
       <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/MainFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="154" column="24" lean-forward="false" selection-start-line="154" selection-start-column="19" selection-end-line="154" selection-end-column="24" />
+            <state relative-caret-position="470">
+              <caret line="243" column="82" lean-forward="false" selection-start-line="243" selection-start-column="82" selection-end-line="243" selection-end-column="82" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#8681#8682#0" expanded="true" />
-                <element signature="e#8713#8714#0" expanded="true" />
-                <element signature="e#8748#8749#0" expanded="true" />
-                <element signature="e#8775#8776#0" expanded="true" />
+                <element signature="e#9103#9104#0" expanded="true" />
+                <element signature="e#9135#9136#0" expanded="true" />
+                <element signature="e#9170#9171#0" expanded="true" />
+                <element signature="e#9197#9198#0" expanded="true" />
+                <element signature="e#9230#9231#0" expanded="true" />
+                <element signature="e#9277#9278#0" expanded="true" />
+                <element signature="e#9311#9312#0" expanded="true" />
+                <element signature="e#9359#9360#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -53,16 +57,18 @@
       <file leaf-file-name="RunSearch.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Search/RunSearch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="650">
-              <caret line="111" column="26" lean-forward="false" selection-start-line="111" selection-start-column="21" selection-end-line="111" selection-end-column="26" />
+            <state relative-caret-position="572">
+              <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#682#683#0" expanded="true" />
-                <element signature="e#740#741#0" expanded="true" />
-                <element signature="e#2986#2987#0" expanded="true" />
-                <element signature="e#3040#3041#0" expanded="true" />
-                <element signature="e#3098#3099#0" expanded="true" />
-                <element signature="e#3135#3136#0" expanded="true" />
+                <element signature="e#749#750#0" expanded="true" />
+                <element signature="e#807#808#0" expanded="true" />
+                <element signature="e#3060#3061#0" expanded="true" />
+                <element signature="e#3114#3115#0" expanded="true" />
+                <element signature="e#3181#3182#0" expanded="true" />
+                <element signature="e#3231#3232#0" expanded="true" />
+                <element signature="e#3289#3290#0" expanded="true" />
+                <element signature="e#3326#3327#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -81,18 +87,16 @@
       <file leaf-file-name="GA.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Search/GA/GA.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="217" column="63" lean-forward="true" selection-start-line="217" selection-start-column="63" selection-end-line="217" selection-end-column="63" />
+            <state relative-caret-position="270">
+              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#518#519#0" expanded="true" />
                 <element signature="e#559#560#0" expanded="true" />
-                <element signature="e#684#685#0" expanded="true" />
-                <element signature="e#743#744#0" expanded="true" />
-                <element signature="e#6490#6521#0" expanded="true" />
-                <element signature="e#8146#8177#0" expanded="true" />
-                <element signature="e#14886#14887#0" expanded="true" />
-                <element signature="e#14926#14927#0" expanded="true" />
+                <element signature="e#6563#6594#0" expanded="true" />
+                <element signature="e#8331#8362#0" expanded="true" />
+                <element signature="e#15073#15074#0" expanded="true" />
+                <element signature="e#15113#15114#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -111,9 +115,10 @@
       <file leaf-file-name="Chromosome.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Search/Chromosome.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
+                <element signature="e#469#470#0" expanded="true" />
                 <element signature="e#496#497#0" expanded="true" />
               </folding>
             </state>
@@ -151,8 +156,8 @@
       <find>elite</find>
       <find>Get</find>
       <find>random</find>
-      <find>System</find>
       <find>print</find>
+      <find>System</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -194,10 +199,10 @@
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/TravelingSalesMan.java" />
         <option value="$PROJECT_DIR$/src/TravelingSalesMan/TravelingSalesMan.java" />
-        <option value="$PROJECT_DIR$/src/GUI/MainFrame.java" />
         <option value="$PROJECT_DIR$/src/Search/GA/TestPMX.java" />
-        <option value="$PROJECT_DIR$/src/Search/RunSearch.java" />
         <option value="$PROJECT_DIR$/src/Search/GA/GA.java" />
+        <option value="$PROJECT_DIR$/src/Search/RunSearch.java" />
+        <option value="$PROJECT_DIR$/src/GUI/MainFrame.java" />
       </list>
     </option>
   </component>
@@ -252,26 +257,6 @@
               <item name="TravelingSalesman" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="GUI" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TravelingSalesman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TravelingSalesman" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Search" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TravelingSalesman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TravelingSalesman" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Search" type="462c0819:PsiDirectoryNode" />
-              <item name="ES" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TravelingSalesman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TravelingSalesman" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Search" type="462c0819:PsiDirectoryNode" />
-              <item name="GA" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -507,7 +492,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91484000" />
+    <option name="totallyTimeSpent" value="95235000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="607" y="2521" width="2562" height="1413" extended-state="6" />
@@ -580,7 +565,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="40" />
+      <option name="time" value="42" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -817,6 +802,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
           <caret line="47" column="49" lean-forward="false" selection-start-line="47" selection-start-column="49" selection-end-line="47" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -876,16 +862,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
           <caret line="747" column="0" lean-forward="false" selection-start-line="747" selection-start-column="0" selection-end-line="747" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Search/Chromosome.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding>
-            <element signature="e#496#497#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -905,50 +882,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Search/Chromosome.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="e#469#470#0" expanded="true" />
+            <element signature="e#496#497#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Search/RunSearch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="111" column="26" lean-forward="false" selection-start-line="111" selection-start-column="21" selection-end-line="111" selection-end-column="26" />
+        <state relative-caret-position="572">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#682#683#0" expanded="true" />
-            <element signature="e#740#741#0" expanded="true" />
-            <element signature="e#2986#2987#0" expanded="true" />
-            <element signature="e#3040#3041#0" expanded="true" />
-            <element signature="e#3098#3099#0" expanded="true" />
-            <element signature="e#3135#3136#0" expanded="true" />
+            <element signature="e#749#750#0" expanded="true" />
+            <element signature="e#807#808#0" expanded="true" />
+            <element signature="e#3060#3061#0" expanded="true" />
+            <element signature="e#3114#3115#0" expanded="true" />
+            <element signature="e#3181#3182#0" expanded="true" />
+            <element signature="e#3231#3232#0" expanded="true" />
+            <element signature="e#3289#3290#0" expanded="true" />
+            <element signature="e#3326#3327#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/MainFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="154" column="24" lean-forward="false" selection-start-line="154" selection-start-column="19" selection-end-line="154" selection-end-column="24" />
+        <state relative-caret-position="470">
+          <caret line="243" column="82" lean-forward="false" selection-start-line="243" selection-start-column="82" selection-end-line="243" selection-end-column="82" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8681#8682#0" expanded="true" />
-            <element signature="e#8713#8714#0" expanded="true" />
-            <element signature="e#8748#8749#0" expanded="true" />
-            <element signature="e#8775#8776#0" expanded="true" />
+            <element signature="e#9103#9104#0" expanded="true" />
+            <element signature="e#9135#9136#0" expanded="true" />
+            <element signature="e#9170#9171#0" expanded="true" />
+            <element signature="e#9197#9198#0" expanded="true" />
+            <element signature="e#9230#9231#0" expanded="true" />
+            <element signature="e#9277#9278#0" expanded="true" />
+            <element signature="e#9311#9312#0" expanded="true" />
+            <element signature="e#9359#9360#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Search/GA/GA.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="217" column="63" lean-forward="true" selection-start-line="217" selection-start-column="63" selection-end-line="217" selection-end-column="63" />
+        <state relative-caret-position="270">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#518#519#0" expanded="true" />
             <element signature="e#559#560#0" expanded="true" />
-            <element signature="e#684#685#0" expanded="true" />
-            <element signature="e#743#744#0" expanded="true" />
-            <element signature="e#6490#6521#0" expanded="true" />
-            <element signature="e#8146#8177#0" expanded="true" />
-            <element signature="e#14886#14887#0" expanded="true" />
-            <element signature="e#14926#14927#0" expanded="true" />
+            <element signature="e#6563#6594#0" expanded="true" />
+            <element signature="e#8331#8362#0" expanded="true" />
+            <element signature="e#15073#15074#0" expanded="true" />
+            <element signature="e#15113#15114#0" expanded="true" />
           </folding>
         </state>
       </provider>

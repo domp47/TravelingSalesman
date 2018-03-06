@@ -18,6 +18,7 @@ public class RunSearch implements Runnable {
     private int nThreads, nSearches, nIterations;
 
     private SearchAlgorithm searchAlgorithm = SearchAlgorithm.ES;
+    private GA.CrossoverType crossoverType = GA.CrossoverType.PMX;
     private TravelingSalesMan travelingSalesMan;
     private boolean runningSearch = false;
 
@@ -40,14 +41,13 @@ public class RunSearch implements Runnable {
 
     private void Search() throws CityNotLoadedException {
 
-//        this.bestChromosome = null; ask orth about this one
 
         if(cities==null)
             throw new CityNotLoadedException();
 
         if(!runningSearch) {
 
-            runningSearch = true;
+            travelingSalesMan.getMainFrame().DisableSearch();
 
             if (searchAlgorithm == SearchAlgorithm.ES) {
                 ESSearch[] esSearches = new ESSearch[nThreads];
@@ -72,7 +72,7 @@ public class RunSearch implements Runnable {
                 Thread[] gaThreads = new Thread[nThreads];
 
                 for (int i = 0; i < nThreads; i++) {
-                    gaSearches[i] = new GA(this, i, cities);
+                    gaSearches[i] = new GA(this, i, cities, crossoverType);
                     gaThreads[i] = new Thread(gaSearches[i]);
                     gaThreads[i].start();
                 }
@@ -85,7 +85,7 @@ public class RunSearch implements Runnable {
                     }
                 }
             }
-            runningSearch = false;
+            travelingSalesMan.getMainFrame().EnableSearch();
         }
 
     }
@@ -101,6 +101,10 @@ public class RunSearch implements Runnable {
 
     public void SetSearchAlgorithm(SearchAlgorithm searchAlgorithm) {
         this.searchAlgorithm = searchAlgorithm;
+    }
+
+    public void setCrossoverType(GA.CrossoverType crossoverType){
+        this.crossoverType = crossoverType;
     }
 
     public synchronized Chromosome getBestChromosome() {
