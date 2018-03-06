@@ -67,7 +67,8 @@ public class GA implements Runnable{
         this.maxGen = maxGen;
         this.nFittest = nFittest;
         this.nRandomSelection = nRandomSelection;
-        random = new Random(System.currentTimeMillis() * (1 + threadIndex));
+//        random = new Random(System.currentTimeMillis() * (1 + threadIndex));
+        random = new Random(1234567890);
         this.crossoverType = crossoverType;
 
         this.fittestChromosome = null;
@@ -234,7 +235,7 @@ public class GA implements Runnable{
         int swathLength = random.nextInt(parent1.getPath().length);
         int swathIndex = random.nextInt(parent1.getPath().length - swathLength);
 
-        for (int i = swathIndex; i < swathIndex + swathLength; i++) {
+        for (int i = swathIndex; i <= swathIndex + swathLength; i++) {
             child1[i] = parent1.getPath()[i];
             child1Contents.add(child1[i]);
 
@@ -245,7 +246,7 @@ public class GA implements Runnable{
         //fill child1 from parent 2
         for (int i = swathIndex; i < swathIndex + swathLength; i++) {
             if(!child1Contents.contains(parent2.getPath()[i])){
-                int indexToInsert = FindIndexForInsertion(parent1.getPath(), parent2.getPath(), swathIndex, swathIndex + swathLength, i);
+                int indexToInsert = FindIndexForInsertion(parent1.getPath(), parent2.getPath(), swathIndex, swathIndex + swathLength, i, child1);
 
                 if(indexToInsert != -1){
                     child1[indexToInsert] = parent2.getPath()[i];
@@ -253,7 +254,7 @@ public class GA implements Runnable{
                 }
             }
             if(!child2Contents.contains(parent1.getPath()[i])){
-                int indexToInsert = FindIndexForInsertion(parent2.getPath(), parent1.getPath(), swathIndex, swathIndex + swathLength, i);
+                int indexToInsert = FindIndexForInsertion(parent2.getPath(), parent1.getPath(), swathIndex, swathIndex + swathLength, i, child2);
 
                 if(indexToInsert != -1){
                     child2[indexToInsert] = parent1.getPath()[i];
@@ -276,16 +277,79 @@ public class GA implements Runnable{
         return children;
     }
 
+    /*private Chromosome[] PerformPMX(Chromosome parent1, Chromosome parent2) {
+        Chromosome[] children = new Chromosome[2];
 
-    private int FindIndexForInsertion(City[] swathsource, City[] otherParent,int swathStartingIndex, int swathEndingIndex, int index){
+        City[] child1 = new City[parent1.getPath().length];
+        City[] child2 = new City[parent1.getPath().length];
+
+        HashSet<City> child1Contents = new HashSet<>();
+        HashSet<City> child2Contents = new HashSet<>();
+
+        int swathLength = random.nextInt(parent1.getPath().length);
+        int swathIndex = random.nextInt(parent1.getPath().length - swathLength);
+
+        for (int i = swathIndex; i < swathIndex + swathLength; i++) {
+            child1[i] = parent1.getPath()[i];
+            child1Contents.add(child1[i]);
+
+            child2[i] = parent2.getPath()[i];
+            child2Contents.add(child2[i]);
+        }
+
+        //fill child1 from parent 2
+        for (int i = swathIndex; i < swathIndex + swathLength; i++) {
+            Function(parent1, parent2, child1, child1Contents, swathLength, swathIndex, i);
+            Function(parent2, parent1, child2, child2Contents, swathLength, swathIndex, i);
+        }
+        for (int i = 0; i < parent2.getPath().length; i++) {
+            if(child1[i] == null){
+                child1[i] = parent2.getPath()[i];
+            }
+            if(child2[i] == null){
+                child2[i] = parent1.getPath()[i];
+            }
+        }
+
+        children[0] = new Chromosome(child1);
+        children[1] = new Chromosome(child2);
+
+        return children;
+    }
+
+    private void Function(Chromosome parent1, Chromosome parent2, City[] child1, HashSet<City> child1Contents, int swathLength, int swathIndex, int i) {
+        if(!child1Contents.contains(parent2.getPath()[i])){
+            int indexToInsert = FindIndexForInsertion(parent1.getPath(), parent2.getPath(), swathIndex, swathIndex + swathLength, i);
+
+            if(indexToInsert != -1){
+                child1[indexToInsert] = parent2.getPath()[i];
+                child1Contents.add(parent2.getPath()[i]);
+            }
+        }
+    }*/
+
+
+    private int FindIndexForInsertion(City[] swathsource, City[] otherParent,int swathStartingIndex, int swathEndingIndex, int index, City[] child) {
+
         City Val = swathsource[index];
 
         //search otherParent for the value at the index in the swathSource
         for (int i = 0; i < otherParent.length; i++) {
-            if(Val == otherParent[i]){
-                if(i >= swathStartingIndex && i <= swathEndingIndex){
-                    return FindIndexForInsertion(swathsource, otherParent, swathStartingIndex, swathEndingIndex, i);
-                }else {
+            if (Val == otherParent[i]) {
+                if (i >= swathStartingIndex && i <= swathEndingIndex) {
+                    int ret = -1;
+                    try {
+                        ret = FindIndexForInsertion(swathsource, otherParent, swathStartingIndex, swathEndingIndex, i, child);
+                    } catch (StackOverflowError e) {
+                        System.out.println("FML");
+                        try {
+                            Thread.sleep(999999999);
+                        } catch (InterruptedException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                    return ret;
+                } else {
                     return i;
                 }
             }

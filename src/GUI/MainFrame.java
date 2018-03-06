@@ -1,7 +1,6 @@
 package GUI;
 
 import DataHandler.FileChooser;
-import Search.RunSearch;
 
 import javax.swing.*;
 import javax.swing.text.AttributeSet;
@@ -14,6 +13,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
+
+import Search.RunSearch;
+import TravelingSalesMan.TravelingSalesMan;
 
 public class MainFrame extends JFrame implements ActionListener, WindowListener {
 
@@ -28,10 +30,10 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
 
     private RunSearch.SearchAlgorithm searchAlgorithm = RunSearch.SearchAlgorithm.ES;
 
-    private RunSearch runSearch;
+    private TravelingSalesMan travelingSalesMan;
 
-    public MainFrame(RunSearch runSearch){
-        this.runSearch = runSearch;
+    public MainFrame(TravelingSalesMan travelingSalesMan){
+        this.travelingSalesMan = travelingSalesMan;
 
         this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
@@ -197,38 +199,38 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
             }
 
             try {
-                runSearch.LoadMatrix(filePath.getText(),Integer.parseInt(nThreads.getText()), Integer.parseInt(nSearches.getText()),Integer.parseInt(nIterations.getText()));
+                travelingSalesMan.getRunSearch().LoadMatrix(filePath.getText(),Integer.parseInt(nThreads.getText()), Integer.parseInt(nSearches.getText()),Integer.parseInt(nIterations.getText()));
             } catch (IOException e1) {
                 JOptionPane.showMessageDialog(this, "Error Loading Data From File Specified");
                 return;
             }
 
-            Thread searchThread = new Thread(runSearch);
+            Thread searchThread = new Thread(travelingSalesMan.getRunSearch());
             searchThread.start();
 
-            runButton.setEnabled(false);
+//            runButton.setEnabled(false);
+//
+//            try {
+//                searchThread.join();
+//            } catch (InterruptedException e1) {
+//                e1.printStackTrace();
+//            }
+//            runButton.setEnabled(true);
 
-            try {
-                searchThread.join();
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
-            }
-            runButton.setEnabled(true);
-
-            best.setText(Float.toString(runSearch.getBestChromosome().GetFitness()));
-            this.revalidate();
-
-            pathPanel.SetPath(runSearch.getBestChromosome().getPath());
-            pathPanel.repaint();
+//            best.setText(Float.toString(travelingSalesMan.getRunSearch().getBestChromosome().GetFitness()));
+//            this.revalidate();
+//
+//            pathPanel.SetPath(travelingSalesMan.getRunSearch().getBestChromosome().getPath());
+//            pathPanel.repaint();
         }
         if(e.getSource() == ESButton){
             this.searchAlgorithm = RunSearch.SearchAlgorithm.ES;
-            runSearch.SetSearchAlgorithm(RunSearch.SearchAlgorithm.ES);
+            travelingSalesMan.getRunSearch().SetSearchAlgorithm(RunSearch.SearchAlgorithm.ES);
             CreateLayout();
         }
         if(e.getSource() == GAButton){
             this.searchAlgorithm = RunSearch.SearchAlgorithm.GA;
-            runSearch.SetSearchAlgorithm(RunSearch.SearchAlgorithm.GA);
+            travelingSalesMan.getRunSearch().SetSearchAlgorithm(RunSearch.SearchAlgorithm.GA);
             CreateLayout();
         }
     }
@@ -239,4 +241,12 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
     public void windowDeiconified(WindowEvent e) {}
     public void windowDeactivated(WindowEvent e) {}
     public void windowClosed(WindowEvent e) {}
+
+    public PathPanel getPathPanel(){
+        return pathPanel;
+    }
+
+    public JTextField getBest() {
+        return best;
+    }
 }

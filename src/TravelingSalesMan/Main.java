@@ -1,14 +1,9 @@
-import GUI.MainFrame;
-import Search.RunSearch;
-
-import java.util.Scanner;
+package TravelingSalesMan;
 
 public class Main {
     public static void main(String[] args){
 
-        RunSearch runSearch = new RunSearch();
-
-        MainFrame mainFrame = new MainFrame(runSearch);
+        new TravelingSalesMan();
 
 //        Scanner scanner =  new Scanner(System.in);
 //        System.out.print("Enter 'e' to type file Path, or enter anything else to open file chooser: ");
