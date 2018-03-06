@@ -84,7 +84,6 @@ public class RunSearch implements Runnable {
                         e.printStackTrace();
                     }
                 }
-                System.out.println(bestChromosome.getPath().length);
             }
             runningSearch = false;
         }
@@ -110,7 +109,7 @@ public class RunSearch implements Runnable {
 
     public synchronized void setBestChromosome(Chromosome bestChromosome) {
         this.bestChromosome = bestChromosome;
-        System.out.println(bestChromosome.GetFitness());
+//        System.out.println(bestChromosome.GetFitness());
         travelingSalesMan.getMainFrame().getBest().setText(Float.toString(bestChromosome.GetFitness()));
         travelingSalesMan.getMainFrame().getPathPanel().SetPath(bestChromosome.getPath());
         travelingSalesMan.getMainFrame().repaint();
