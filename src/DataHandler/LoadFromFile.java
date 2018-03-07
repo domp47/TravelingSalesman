@@ -23,6 +23,7 @@ public class LoadFromFile {
 
         City[] cities;
 
+        //buffered reader for reading vertices from file
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
@@ -40,6 +41,7 @@ public class LoadFromFile {
 
         cities = new City[nVertices];
 
+        //read each line and create city based on the vertex
         for(int i = 0; i < cities.length; i++){
             line = bufferedReader.readLine();
 
@@ -48,6 +50,7 @@ public class LoadFromFile {
                 return null;
             }
 
+            //split the line into the 3 values index, x value, y value
             String[] splitString = line.split("\\s+");
 
             if(splitString.length!=3){
@@ -55,6 +58,7 @@ public class LoadFromFile {
                 return null;
             }
 
+            //create new city from the x value and y value
             City city = new City(Float.parseFloat(splitString[1]), Float.parseFloat(splitString[2]));
 
             cities[i] = city;

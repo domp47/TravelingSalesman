@@ -5,29 +5,33 @@ public class Permutations {
     private int[][] permList;
 
 
+    /**
+     * Calculates all the permutations of a given array of numbers
+     * @param arr
+     */
     public Permutations(int[] arr){
         permIndex = 0;
-        permList = new int[Factorial(arr.length)][];
+        permList = new int[Factorial(arr.length)][]; // the number of possible permutations of n is n!
 
-        Permute(arr.clone(), 0);
+        Permute(arr.clone(), 0); //find permutations
     }
 
+    /**
+     * Gets the list of permutations
+     * @return list of permutations
+     */
     public int[][] GetPermutationList(){
         return permList;
     }
 
+    /**
+     * Calculate permutations and add to list
+     * @param arr array to permute
+     * @param index number of which permutation
+     */
     private void Permute(int[] arr, int index){
         if(index >= arr.length - 1){ //If we are at the last element - nothing left to permute
-            //Print the array
-//            System.out.print("[");
-//            for(int i = 0; i < arr.length - 1; i++){
-//                System.out.print(arr[i] + ", ");
-//            }
-//            if(arr.length > 0)
-//                System.out.print(arr[arr.length - 1]);
-//            System.out.println("]");
-
-            permList[permIndex] = arr.clone();
+             permList[permIndex] = arr.clone();
             permIndex++;
             return;
         }
@@ -49,6 +53,11 @@ public class Permutations {
         }
     }
 
+    /**
+     * Calculates the Factorial of a number
+     * @param num to calcualate
+     * @return factorial of input
+     */
     private int Factorial(int num){
         int fac = 1;
 

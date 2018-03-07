@@ -6,10 +6,17 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+/**
+ * Panel to Hold the drawing of the path
+ */
 public class PathPanel extends JPanel {
 
+    //canvas to draw on
     private PathCanvas pathCanvas;
 
+    /**
+     * create border and set layout
+     */
     public PathPanel(){
         this.setPreferredSize(new Dimension(600,600)); // The layout manager will ty to use this size
         this.setLayout(new BorderLayout());

@@ -11,13 +11,13 @@ public class Mutate {
     public Mutate(){}
 
     /**
-     *
-     * Mutates array to interchange 3 of the vertices
-     *
+     * Mutates array to interchange N_INTERCHANGES of the vertices
      * @param array to mutate
+     * @param r random to use
      */
     public void Mutate(int[] array, Random r){
 
+        //get unique indexes
         int[] ranIndexes = new int[N_INTERCHANGES];
 
         for(int i = 0; i < N_INTERCHANGES; i++){
@@ -33,6 +33,7 @@ public class Mutate {
             }
         }
 
+        //get all permutations and choose a random one
         Permutations permutations = new Permutations(ranIndexes);
         int[][] listPermutations = permutations.GetPermutationList();
 
@@ -41,14 +42,20 @@ public class Mutate {
         int[] ranPermutation = listPermutations[ranPermIndex];
         int[] origVals = array.clone();
 
-
+        //swap the values to mutate
         for(int i = 0; i < ranPermutation.length; i++){
             array[ranPermutation[i]] = origVals[ranIndexes[i]];
         }
     }
 
+    /**
+     * Mutates array to interchange N_INTERCHANGES of the vertices
+     * @param path to mutate
+     * @param r random to use
+     */
     public void Mutate(City[] path, Random r){
 
+        //get unique indexes
         int[] ranIndexes = new int[N_INTERCHANGES];
 
         for(int i = 0; i < N_INTERCHANGES; i++){
@@ -64,6 +71,7 @@ public class Mutate {
             }
         }
 
+        //get all permutations and choose a random one
         Permutations permutations = new Permutations(ranIndexes);
         int[][] listPermutations = permutations.GetPermutationList();
 
@@ -72,6 +80,7 @@ public class Mutate {
         int[] ranPermutation = listPermutations[ranPermIndex];
         City[] origVals = path.clone();
 
+        //swap the values to mutate
         for (int i = 0; i < ranPermutation.length; i++) {
             path[ranPermutation[i]] = origVals[ranIndexes[i]];
         }

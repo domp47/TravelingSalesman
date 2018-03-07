@@ -6,7 +6,6 @@ import Search.Mutate;
 import Search.RunSearch;
 
 import java.util.Random;
-//import java.util.concurrent.ThreadLocalRandom;
 
 public class  ESSearch implements Runnable{
 
@@ -20,6 +19,15 @@ public class  ESSearch implements Runnable{
     private Chromosome bestChromosome;
 
     private Random rnd;
+
+    /**
+     * Constructor for Evolutionary Search
+     * @param runSearch Search controller
+     * @param cities list of cities to search
+     * @param nIterations number of iterations
+     * @param nEpochs number of searches
+     * @param threadIndex number of the thread
+     */
     public ESSearch(RunSearch runSearch, City[] cities, int nIterations, int nEpochs, int threadIndex)
     {
         this.runSearch = runSearch;
@@ -33,18 +41,23 @@ public class  ESSearch implements Runnable{
         rnd = new Random( System.currentTimeMillis()*(1 + threadIndex));
     }
 
+    /**
+     * Searches for the shortest path using Evolutionary Strategy
+     */
     public void Search(){
 
         for (int epochs = 0; epochs < N_EPOCHS; epochs++) {
-            int[] ranPath = GenerateRandomPath(cities.length);
+            int[] ranPath = GenerateRandomPath(cities.length);//generate random path
 
             for (int i = 0; i < N_ITERATIONS; i++) {
 
-                float distance = GetDistance(ranPath);
+                float distance = GetDistance(ranPath);//find distance of the path
 
+                //if no shortest path set set it as shortest
                 if(bestChromosome == null){
                     bestChromosome = new Chromosome(GetCityPath(ranPath));
 
+                    //set the global shortest path if this is the shortest global path
                     if(runSearch.getBestChromosome() == null){
                         runSearch.setBestChromosome(bestChromosome);
                     }
@@ -52,9 +65,11 @@ public class  ESSearch implements Runnable{
                         runSearch.setBestChromosome(bestChromosome);
                     }
                 }
+                //check if this path is the shortest path we've seen in this thread
                 else if(distance<bestChromosome.GetFitness()){
                     bestChromosome = new Chromosome(GetCityPath(ranPath));
 
+                    //set the global shortest path if this is the shortest global path
                     if(runSearch.getBestChromosome() == null){
                         runSearch.setBestChromosome(bestChromosome);
                     }
@@ -62,12 +77,17 @@ public class  ESSearch implements Runnable{
                         runSearch.setBestChromosome(bestChromosome);
                     }
                 }
-                new Mutate().Mutate(ranPath, rnd);
+                new Mutate().Mutate(ranPath, rnd); //mutate the path
             }
         }
 
     }
 
+    /**
+     * converts int array to City array
+     * @param path of ints
+     * @return path of cities
+     */
     private City[] GetCityPath(int[] path){
         City[] cityPath = new City[path.length];
 
@@ -89,7 +109,7 @@ public class  ESSearch implements Runnable{
        float distance = 0;
 
         for (int i = 0; i < path.length; i++) {
-            distance += cities[path[i]].GetDistance(cities[path[(i+1)%cities.length]]);
+            distance += cities[path[i]].GetDistance(cities[path[(i+1)%cities.length]]); //add the distance between each city
         }
 
        return distance;
@@ -134,9 +154,5 @@ public class  ESSearch implements Runnable{
     @Override
     public void run() {
         Search();
-    }
-
-    public Chromosome GetBestChromosome() {
-        return bestChromosome;
     }
 }
