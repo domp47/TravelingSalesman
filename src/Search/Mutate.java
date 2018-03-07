@@ -15,7 +15,9 @@ public class Mutate {
      * @param array to mutate
      * @param r random to use
      */
-    public void Mutate(int[] array, Random r){
+    public int[] Mutate(int[] array, Random r){
+
+        int[] newArray = array.clone();
 
         //get unique indexes
         int[] ranIndexes = new int[N_INTERCHANGES];
@@ -25,7 +27,7 @@ public class Mutate {
         }
 
         for(int i = 0; i < N_INTERCHANGES;){
-            int ranIndex = r.nextInt(array.length);
+            int ranIndex = r.nextInt(newArray.length);
 
             if(!Contains(ranIndexes,ranIndex)){
                 ranIndexes[i] = ranIndex;
@@ -40,12 +42,13 @@ public class Mutate {
         int ranPermIndex = r.nextInt(listPermutations.length-1)+1;
 
         int[] ranPermutation = listPermutations[ranPermIndex];
-        int[] origVals = array.clone();
+        int[] origVals = newArray.clone();
 
         //swap the values to mutate
         for(int i = 0; i < ranPermutation.length; i++){
-            array[ranPermutation[i]] = origVals[ranIndexes[i]];
+            newArray[ranPermutation[i]] = origVals[ranIndexes[i]];
         }
+        return newArray;
     }
 
     /**

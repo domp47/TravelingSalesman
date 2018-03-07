@@ -77,7 +77,7 @@ public class  ESSearch implements Runnable{
                         runSearch.setBestChromosome(bestChromosome);
                     }
                 }
-                new Mutate().Mutate(ranPath, rnd); //mutate the path
+                ranPath = new Mutate().Mutate(ranPath, rnd); //mutate the path
             }
         }
 
