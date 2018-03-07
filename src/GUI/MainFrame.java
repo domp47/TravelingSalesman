@@ -14,6 +14,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
 
+import Search.Chromosome;
 import Search.GA.GA;
 import Search.RunSearch;
 import TravelingSalesMan.TravelingSalesMan;
@@ -231,11 +232,17 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener 
             this.searchAlgorithm = RunSearch.SearchAlgorithm.ES;
             travelingSalesMan.getRunSearch().SetSearchAlgorithm(RunSearch.SearchAlgorithm.ES);
             CreateLayout();
+            Chromosome bestPath = travelingSalesMan.getRunSearch().getBestChromosome();
+            if(bestPath!=null)
+                pathPanel.SetPath(bestPath.getPath());
         }
         if(e.getSource() == GAButton){
             this.searchAlgorithm = RunSearch.SearchAlgorithm.GA;
             travelingSalesMan.getRunSearch().SetSearchAlgorithm(RunSearch.SearchAlgorithm.GA);
             CreateLayout();
+            Chromosome bestPath = travelingSalesMan.getRunSearch().getBestChromosome();
+            if(bestPath!=null)
+                pathPanel.SetPath(bestPath.getPath());
         }
         if(e.getSource() == PMXButton){
             travelingSalesMan.getRunSearch().setCrossoverType(GA.CrossoverType.PMX);

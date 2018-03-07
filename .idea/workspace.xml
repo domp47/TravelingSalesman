@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/Search/GA/GA.java" line="43" />
+    <bookmark url="file://$PROJECT_DIR$/src/Search/GA/GA.java" line="47" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fed54a46-3832-4c81-ab78-a907c0e0cb4a" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/GUI/MainFrame.java" afterPath="$PROJECT_DIR$/src/GUI/MainFrame.java" />
       <change beforePath="$PROJECT_DIR$/src/Search/GA/GA.java" afterPath="$PROJECT_DIR$/src/Search/GA/GA.java" />
-      <change beforePath="$PROJECT_DIR$/src/Search/RunSearch.java" afterPath="$PROJECT_DIR$/src/Search/RunSearch.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,21 +21,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI/MainFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="243" column="82" lean-forward="false" selection-start-line="243" selection-start-column="82" selection-end-line="243" selection-end-column="82" />
+            <state relative-caret-position="2285">
+              <caret line="236" column="54" lean-forward="false" selection-start-line="236" selection-start-column="54" selection-end-line="236" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#9103#9104#0" expanded="true" />
-                <element signature="e#9135#9136#0" expanded="true" />
-                <element signature="e#9170#9171#0" expanded="true" />
-                <element signature="e#9197#9198#0" expanded="true" />
-                <element signature="e#9230#9231#0" expanded="true" />
-                <element signature="e#9277#9278#0" expanded="true" />
-                <element signature="e#9311#9312#0" expanded="true" />
-                <element signature="e#9359#9360#0" expanded="true" />
+                <element signature="e#9477#9478#0" expanded="true" />
+                <element signature="e#9509#9510#0" expanded="true" />
+                <element signature="e#9544#9545#0" expanded="true" />
+                <element signature="e#9571#9572#0" expanded="true" />
+                <element signature="e#9604#9605#0" expanded="true" />
+                <element signature="e#9651#9652#0" expanded="true" />
+                <element signature="e#9685#9686#0" expanded="true" />
+                <element signature="e#9733#9734#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -57,7 +56,7 @@
       <file leaf-file-name="RunSearch.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Search/RunSearch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
+            <state relative-caret-position="-430">
               <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -84,19 +83,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GA.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GA.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Search/GA/GA.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="390">
+              <caret line="26" column="29" lean-forward="false" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#518#519#0" expanded="true" />
-                <element signature="e#559#560#0" expanded="true" />
-                <element signature="e#6563#6594#0" expanded="true" />
-                <element signature="e#8331#8362#0" expanded="true" />
-                <element signature="e#15073#15074#0" expanded="true" />
-                <element signature="e#15113#15114#0" expanded="true" />
+                <element signature="e#7879#7910#0" expanded="true" />
+                <element signature="e#9647#9678#0" expanded="true" />
+                <element signature="e#16389#16390#0" expanded="true" />
+                <element signature="e#16429#16430#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -200,8 +197,8 @@
         <option value="$PROJECT_DIR$/src/TravelingSalesMan.java" />
         <option value="$PROJECT_DIR$/src/TravelingSalesMan/TravelingSalesMan.java" />
         <option value="$PROJECT_DIR$/src/Search/GA/TestPMX.java" />
-        <option value="$PROJECT_DIR$/src/Search/GA/GA.java" />
         <option value="$PROJECT_DIR$/src/Search/RunSearch.java" />
+        <option value="$PROJECT_DIR$/src/Search/GA/GA.java" />
         <option value="$PROJECT_DIR$/src/GUI/MainFrame.java" />
       </list>
     </option>
@@ -492,7 +489,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95235000" />
+    <option name="totallyTimeSpent" value="99923000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="607" y="2521" width="2562" height="1413" extended-state="6" />
@@ -565,7 +562,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="42" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Search/GA/GA.java</url>
+          <line>182</line>
+          <properties />
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="43" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -858,14 +863,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="747" column="0" lean-forward="false" selection-start-line="747" selection-start-column="0" selection-end-line="747" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/util/Arrays.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
@@ -893,9 +890,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="747" column="0" lean-forward="false" selection-start-line="747" selection-start-column="0" selection-end-line="747" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Search/GA/GA.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="29" lean-forward="false" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7879#7910#0" expanded="true" />
+            <element signature="e#9647#9678#0" expanded="true" />
+            <element signature="e#16389#16390#0" expanded="true" />
+            <element signature="e#16429#16430#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Search/RunSearch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
+        <state relative-caret-position="-430">
           <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -913,34 +932,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/MainFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="243" column="82" lean-forward="false" selection-start-line="243" selection-start-column="82" selection-end-line="243" selection-end-column="82" />
+        <state relative-caret-position="2285">
+          <caret line="236" column="54" lean-forward="false" selection-start-line="236" selection-start-column="54" selection-end-line="236" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#9103#9104#0" expanded="true" />
-            <element signature="e#9135#9136#0" expanded="true" />
-            <element signature="e#9170#9171#0" expanded="true" />
-            <element signature="e#9197#9198#0" expanded="true" />
-            <element signature="e#9230#9231#0" expanded="true" />
-            <element signature="e#9277#9278#0" expanded="true" />
-            <element signature="e#9311#9312#0" expanded="true" />
-            <element signature="e#9359#9360#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Search/GA/GA.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#518#519#0" expanded="true" />
-            <element signature="e#559#560#0" expanded="true" />
-            <element signature="e#6563#6594#0" expanded="true" />
-            <element signature="e#8331#8362#0" expanded="true" />
-            <element signature="e#15073#15074#0" expanded="true" />
-            <element signature="e#15113#15114#0" expanded="true" />
+            <element signature="e#9477#9478#0" expanded="true" />
+            <element signature="e#9509#9510#0" expanded="true" />
+            <element signature="e#9544#9545#0" expanded="true" />
+            <element signature="e#9571#9572#0" expanded="true" />
+            <element signature="e#9604#9605#0" expanded="true" />
+            <element signature="e#9651#9652#0" expanded="true" />
+            <element signature="e#9685#9686#0" expanded="true" />
+            <element signature="e#9733#9734#0" expanded="true" />
           </folding>
         </state>
       </provider>

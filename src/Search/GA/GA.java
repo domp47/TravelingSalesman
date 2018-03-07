@@ -16,14 +16,18 @@ public class GA implements Runnable{
     private int populationSize, maxGen, nFittest, nRandomSelection;
     private Random random;
     private CrossoverType crossoverType;
-
-    private Vector<Chromosome> initPopulation;
-
+    private City[] listOfCities;
+    private LinkedList<Chromosome> previousGenerationsFittest;
     private Chromosome fittestChromosome;
+    private double convergenceRate;
+    private int failureToEvolveCounter = 0;
 
     @Override
     public void run() {
-        Evolve(initPopulation, 1);
+        for (int i = 0; i < 30; i++) {
+            Vector<Chromosome> initPopulation = GeneratePopulation(listOfCities);
+            Evolve(initPopulation, 1);
+        }
     }
 
     public enum CrossoverType{
@@ -41,7 +45,7 @@ public class GA implements Runnable{
      * @param cities
      */
     public GA(RunSearch runSearch, int populationSize, int maxGen, long threadIndex, City[] cities, CrossoverType crossoverType){
-        this(runSearch,1, 0.1, populationSize, maxGen, 3, 3, threadIndex, cities, CrossoverType.UOX);
+        this(runSearch,1, 0.1, populationSize, maxGen, 3, 3, threadIndex, cities, CrossoverType.UOX, 0.0001);
     }
 
     /**
@@ -55,10 +59,9 @@ public class GA implements Runnable{
      * @param cities
      * @param crossoverType
      */
-    public GA(RunSearch runSearch, double crossoverRate, double mutationRate, int populationSize, int maxGen, int nFittest, int nRandomSelection, long threadIndex, City[] cities, CrossoverType crossoverType){
+    public GA(RunSearch runSearch, double crossoverRate, double mutationRate, int populationSize, int maxGen, int nFittest, int nRandomSelection, long threadIndex, City[] cities, CrossoverType crossoverType,double convergenceRate){
 
         this.runSearch = runSearch;
-
         this.crossoverRate = crossoverRate;
         this.mutationRate = mutationRate;
         this.populationSize = populationSize;
@@ -68,10 +71,10 @@ public class GA implements Runnable{
         random = new Random(System.currentTimeMillis() * (1 + threadIndex));
 //        random = new Random(1234567890);
         this.crossoverType = crossoverType;
-
+        this.convergenceRate = convergenceRate;
         this.fittestChromosome = null;
-
-        this.initPopulation = GeneratePopulation(cities);
+        this.previousGenerationsFittest = new LinkedList<>();
+        this.listOfCities = cities;
     }
 
     private Vector<Chromosome> GeneratePopulation(City[] path){
@@ -106,15 +109,8 @@ public class GA implements Runnable{
 
         Chromosome[] fittest = GetFittest(population);
 
-        int gkfd = 0;
-
         for(Chromosome fit : fittest){
             nextGeneration.addElement(fit);
-
-            if(duplicates(fit.getPath())){
-                System.out.println("Fittest at " + gkfd + "duplicates");
-            }
-            gkfd++;
         }
 
         SetFittestChromosome(fittest);
@@ -171,12 +167,42 @@ public class GA implements Runnable{
             }
         }
 
-        //TODO check to find if converged
-        if(nthGeneration < maxGen)
-            Evolve(nextGeneration, nthGeneration+1);
-        else{
-            SetFittestChromosome(fittest);
+//        boolean isConverged = CheckConvergence(fittest[0]);
+//        if(!isConverged){
+            if(nthGeneration < maxGen) {
+                Evolve(nextGeneration, nthGeneration + 1);
+            }else{
+                SetFittestChromosome(fittest);
+            }
+//        }else{
+//            System.out.println("Converged at Generation: "+nthGeneration);
+//        }
+    }
+
+    private boolean CheckConvergence(Chromosome fittest){
+        boolean convergence = false;
+        if(previousGenerationsFittest.size() == 10 ){
+            float greatestIncrease = - Float.MAX_VALUE;
+
+            for(Chromosome solution: previousGenerationsFittest){
+                float increase = 1 - fittest.GetFitness() / solution.GetFitness();
+
+                if(increase > greatestIncrease)
+                    greatestIncrease = increase;
+            }
+            if(greatestIncrease < convergenceRate){
+                if(failureToEvolveCounter++ > 10){
+                    convergence = true;
+                }
+            }else{
+                failureToEvolveCounter = 0;
+            }
+            previousGenerationsFittest.removeFirst();
+            previousGenerationsFittest.addLast(fittest);
+        }else{
+            previousGenerationsFittest.addLast(fittest);
         }
+        return convergence;
     }
 
     private void SetFittestChromosome(Chromosome[] fittest) {
