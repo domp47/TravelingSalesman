@@ -17,6 +17,7 @@ public class  ESSearch implements Runnable{
     private City[] cities;
 
     private Chromosome bestChromosome;
+    private int[] bestIndexes;
 
     private Random rnd;
 
@@ -56,6 +57,7 @@ public class  ESSearch implements Runnable{
                 //if no shortest path set set it as shortest
                 if(bestChromosome == null){
                     bestChromosome = new Chromosome(GetCityPath(ranPath));
+                    bestIndexes = ranPath.clone();
 
                     //set the global shortest path if this is the shortest global path
                     if(runSearch.getBestChromosome() == null){
@@ -68,6 +70,7 @@ public class  ESSearch implements Runnable{
                 //check if this path is the shortest path we've seen in this thread
                 else if(distance<bestChromosome.GetFitness()){
                     bestChromosome = new Chromosome(GetCityPath(ranPath));
+                    bestIndexes = ranPath.clone();
 
                     //set the global shortest path if this is the shortest global path
                     if(runSearch.getBestChromosome() == null){
@@ -77,7 +80,7 @@ public class  ESSearch implements Runnable{
                         runSearch.setBestChromosome(bestChromosome);
                     }
                 }
-                ranPath = new Mutate().Mutate(ranPath, rnd); //mutate the path
+                ranPath = new Mutate().Mutate(bestIndexes, rnd); //mutate the path
             }
         }
 
