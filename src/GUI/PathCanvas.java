@@ -66,6 +66,7 @@ public class PathCanvas extends JPanel{
                 int y1 = (int) (path[i].getY() * ratio);
                 int y2 = (int) (path[(i+1)%path.length].getY() * ratio);
 
+                g.fillRect(x1-3,y1-3,5,5);
                 g.drawLine(x1,y1,x2,y2);
             }
 

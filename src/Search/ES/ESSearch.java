@@ -60,12 +60,7 @@ public class  ESSearch implements Runnable{
                     bestIndexes = ranPath.clone();
 
                     //set the global shortest path if this is the shortest global path
-                    if(runSearch.getBestChromosome() == null){
-                        runSearch.setBestChromosome(bestChromosome);
-                    }
-                    else if(bestChromosome.GetFitness() < runSearch.getBestChromosome().GetFitness()){
-                        runSearch.setBestChromosome(bestChromosome);
-                    }
+                    runSearch.CheckSetBestChromosome(bestChromosome);
                 }
                 //check if this path is the shortest path we've seen in this thread
                 else if(distance<bestChromosome.GetFitness()){
@@ -73,12 +68,7 @@ public class  ESSearch implements Runnable{
                     bestIndexes = ranPath.clone();
 
                     //set the global shortest path if this is the shortest global path
-                    if(runSearch.getBestChromosome() == null){
-                        runSearch.setBestChromosome(bestChromosome);
-                    }
-                    else if(bestChromosome.GetFitness() < runSearch.getBestChromosome().GetFitness()){
-                        runSearch.setBestChromosome(bestChromosome);
-                    }
+                    runSearch.CheckSetBestChromosome(bestChromosome);
                 }
                 ranPath = new Mutate().Mutate(bestIndexes, rnd); //mutate the path
             }

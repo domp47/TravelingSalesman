@@ -101,7 +101,7 @@ public class RunSearch implements Runnable {
 
             //create n thread instances of GA Search
             for (int i = 0; i < nThreads; i++) {
-                gaSearches[i] = new GA(this, i, cities, crossoverType);
+                gaSearches[i] = new GA(this, i, cities, crossoverType, popSize, maxGen);
                 gaThreads[i] = new Thread(gaSearches[i]);
                 gaThreads[i].start();
             }
@@ -157,13 +157,15 @@ public class RunSearch implements Runnable {
     }
 
     /**
-     * Sets the shortest path and draws it on canvas
+     * Sets the shortest path and draws it on canvas if necessary
      * @param bestChromosome shortest path
      */
-    public synchronized void setBestChromosome(Chromosome bestChromosome) {
-        this.bestChromosome = bestChromosome;
-        travelingSalesMan.getMainFrame().getBest().setText(Float.toString(bestChromosome.GetFitness()));
-        travelingSalesMan.getMainFrame().getPathPanel().SetPath(bestChromosome.getPath());
-        travelingSalesMan.getMainFrame().repaint();
+    public synchronized void CheckSetBestChromosome(Chromosome bestChromosome) {
+        if(this.bestChromosome==null||bestChromosome.GetFitness()<this.bestChromosome.GetFitness()) {
+            this.bestChromosome = bestChromosome;
+            travelingSalesMan.getMainFrame().getBest().setText(Float.toString(bestChromosome.GetFitness()));
+            travelingSalesMan.getMainFrame().getPathPanel().SetPath(bestChromosome.getPath());
+            travelingSalesMan.getMainFrame().repaint();
+        }
     }
 }

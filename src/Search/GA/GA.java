@@ -206,24 +206,14 @@ public class GA implements Runnable{
             fittestChromosome = fittest[0];
 
             //set the global shortest path if this is the shortest global path
-            if(runSearch.getBestChromosome() == null){
-                runSearch.setBestChromosome(fittestChromosome);
-            }
-            else if(fittestChromosome.GetFitness() < runSearch.getBestChromosome().GetFitness()){
-                runSearch.setBestChromosome(fittestChromosome);
-            }
+            runSearch.CheckSetBestChromosome(fittestChromosome);
         }
         //check if this path is the shortest path we've seen in this thread
         else if(fittest[0].GetFitness() < fittestChromosome.GetFitness()){
             fittestChromosome = fittest[0];
 
             //set the global shortest path if this is the shortest global path
-            if(runSearch.getBestChromosome() == null){
-                runSearch.setBestChromosome(fittestChromosome);
-            }
-            else if(fittestChromosome.GetFitness() < runSearch.getBestChromosome().GetFitness()){
-                runSearch.setBestChromosome(fittestChromosome);
-            }
+            runSearch.CheckSetBestChromosome(fittestChromosome);
         }
     }
 
